@@ -1,0 +1,31 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ps="http://primefaces.org/sentinel"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <div id="layout-menubar" class="Unselectable fontRegular">
+        <div class="layout-menubarinner-box" id="buttonArea">
+            <a href="#" id="layout-menubar-resize" class="BordRad3" title="Menu Resize"><i class="icon-th-list-2"></i></a>
+            <a href="#" id="layout-menubar-resize2" class="BordRad3" title="Open Menu"><i class="icon-menu"></i></a>
+        </div>
+
+        <div class="layout-menubarinner-box" id="searchArea">
+            <i class="icon-search floatLeft gray"></i>
+            <input type="text" class="layout-menubar-search floatLeft Animated05" placeholder="Search Here"/>
+        </div>
+
+        <ps:menu id="sm_leftmenu">
+            <p:menuitem id="sm_turnos" value="Turnos Pendientes" icon="icon-arrows-cw-1" outcome="turnosPendientes" containerStyleClass="layout-menubar-active"/>
+            <p:menuitem id="sm_hospitalizacion" value="Hospitalizaciones" icon="icon-hospital" outcome="hospitalizaciones" containerStyleClass="layout-menubar-active"/>
+            <p:menuitem id="sm_cobertissfa" value="Cobertura ISSFA" icon="icon-users" outcome="coberturaIssfa" containerStyleClass="layout-menubar-active"/>
+            <p:menuitem id="sm_certificadomedico" value="Certificados Médicos" icon="icon-file-pdf" outcome="certificadoLlama" containerStyleClass="layout-menubar-active"/>
+            <p:menuitem id="sm_comproelect" value="Comprobante Electrónico" icon="icon-doc-text-inv" outcome="comprobantesElectronicos" containerStyleClass="layout-menubar-active"/>
+            <p:menuitem id="sm_turnprimv" value="Turnos Primera Vez" icon="icon-file-powerpoint" outcome="turnoprimera" containerStyleClass="layout-menubar-active"/> 
+        </ps:menu>
+
+    </div>
+
+</ui:composition>

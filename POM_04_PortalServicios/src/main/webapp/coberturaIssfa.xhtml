@@ -1,0 +1,178 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+
+
+
+        <h:form>  
+            <div class="Container100 BorBotLeaden ui-fluid">  
+                <div class="ContainerIndent">  
+                    
+                    <p:panel header="Elemto de Impresión">
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">  
+                            <div class="ui-panelgrid-cell ui-grid-col-2 "><p:outputLabel class="hardblue Fs18" value="NumeroHc:" for="numeroHc" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="numeroHc" value="#{coberturaISSFAController.vDetallePaciente.numeroHc}" title="NumeroHc" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-2 "><p:outputLabel class="hardblue Fs18" value="Derecho:" for="derecho" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="derecho" value="#{coberturaISSFAController.vDetallePaciente.derecho}" title="Derecho" /></div>
+                        </div>
+                        <div class="EmptyBox10"></div>
+                        <div class="ui-grid-row"> 
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="TipoDependencia:" for="tipoDependencia" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="tipoDependencia" value="#{coberturaISSFAController.vDetallePaciente.tipoDependencia}" title="TipoDependencia" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="Sexo:" for="sexo" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="sexo" value="#{coberturaISSFAController.vDetallePaciente.sexo}" title="Sexo" /></div>
+                        </div>
+                        <div class="EmptyBox10"></div>
+                        <div class="ui-grid-row"> 
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="Nombres:" for="primerNombre" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="primerNombre" value="#{coberturaISSFAController.vDetallePaciente.primerNombre}" title="PrimerNombre" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel  class="hardblue Fs18" value="Apellido:" for="apellidoPaterno" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="apellidoPaterno" value="#{coberturaISSFAController.vDetallePaciente.apellidoPaterno}" title="ApellidoPaterno" /></div>
+                        </div>
+                        <div class="EmptyBox10"></div>
+                        <div class="ui-grid-row"> 
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="Cedula:" for="cedula" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="cedula" value="#{coberturaISSFAController.vDetallePaciente.cedula}" title="Cedula" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="EstadoCivil:" for="estadoCivil" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="estadoCivil" value="#{coberturaISSFAController.vDetallePaciente.estadoCivil}" title="EstadoCivil" /></div>
+
+                        </div>
+                        <div class="EmptyBox10"></div>
+                        <div class="ui-grid-row"> 
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="FechaNacimiento:" for="fechaNacimiento" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="fechaNacimiento" value="#{coberturaISSFAController.vDetallePaciente.fechaNacimiento}" title="FechaNacimiento" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </p:outputLabel>
+                            </div>
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="NumeroAfiliacionIess:" for="numeroAfiliacionIess" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="numeroAfiliacionIess" value="#{coberturaISSFAController.vDetallePaciente.numeroAfiliacionIess}" title="NumeroAfiliacionIess" /></div>
+                        </div>
+                        <div class="EmptyBox10"></div>
+
+                        <div class="ui-grid-row"> 
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="Email:" for="email" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="email" value="#{coberturaISSFAController.vDetallePaciente.email}" title="Email" /></div>
+
+                        </div>
+                        <div class="EmptyBox10"></div>
+
+
+                        <div class="ui-grid-row"> 
+                            <div class="ui-panelgrid-cell ui-grid-col-2 "><p:outputLabel class="hardblue Fs18" value="IdIssfaTitular:" for="idIssfaTitular" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="idIssfaTitular" value="#{coberturaISSFAController.vDetallePaciente.idIssfaTitular}" title="IdIssfaTitular" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="IdIssfa:" for="idIssfa" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="idIssfa" value="#{coberturaISSFAController.vDetallePaciente.idIssfa}" title="IdIssfa" /></div>
+
+                        </div>
+                        <div class="EmptyBox10"></div>
+                        <div class="ui-grid-row"> 
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="EsTitular:" for="esTitular" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="esTitular" value="#{coberturaISSFAController.vDetallePaciente.esTitular}" title="EsTitular" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="Telefono:" for="telefono" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="telefono" value="#{coberturaISSFAController.vDetallePaciente.telefono}" title="Telefono" /></div>
+
+                        </div>
+                        <div class="ui-grid-row"> 
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="TelefonoTrabajo:" for="telefonoTrabajo" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="telefonoTrabajo" value="#{coberturaISSFAController.vDetallePaciente.telefonoTrabajo}" title="TelefonoTrabajo" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-2"><p:outputLabel class="hardblue Fs18" value="Celular:" for="celular" /></div>
+                            <div class="ui-panelgrid-cell ui-grid-col-4"><p:outputLabel id="celular" value="#{coberturaISSFAController.vDetallePaciente.celular}"  title="Celular" /></div>
+                        </div>
+                        <div class="EmptyBox10"></div>
+                    </div>
+                    </p:panel>
+                    
+                </div>  
+            </div>  
+        </h:form>  
+        <p:separator > 
+        </p:separator >    
+
+
+        <h:form>  
+            <div class="Container100 BorBotLeaden ui-fluid">  
+                <div class="ContainerIndent"> 
+                    
+                     <p:panel header="Familiares Relacionados">
+                        <div class="ContainerIndent">
+
+                            <p:dataTable reflow="true" style="width: 66%;margin-left:15%;margin-right:15%;"  value="#{coberturaISSFAController.listaBuscaDependientes}" var="item">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText    value="TIPO"/>
+                                    </f:facet>
+                                    <h:outputText    value="#{item.TIPO_DEPENDENCIA}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText    value="CATEGORIA"/>
+                                    </f:facet>
+                                    <h:outputText    value="#{item.CATEG_PACIENTE}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText    value="CEDULA"/>
+                                    </f:facet>
+                                    <h:outputText    value="#{item.CEDULA}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText    value="HC"/>
+                                    </f:facet>
+                                    <h:outputText    value="#{item.NUMERO_HC}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText    value="NOMBRE"/>
+                                    </f:facet>
+                                    <h:outputText    value="#{item.PRIMER_NOMBRE}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText    value="APELLIDO"/>
+                                    </f:facet>
+                                    <h:outputText    value="#{item.APELLIDO_PATERNO}"/>
+                                </p:column>
+                                <p:column width="150px">
+                                    <f:facet name="header">
+                                        <h:outputText    value="EMAIL"/>
+                                    </f:facet>
+                                    <h:outputText    value="#{item.EMAIL}"/>
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText    value="TELEFONO"/>
+                                    </f:facet>
+                                    <h:outputText    value="#{item.TELEFONO}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText    value="CELULAR"/>
+                                    </f:facet>
+                                    <h:outputText    value="#{item.TELEFONO_TRABAJO}"/>
+                                </p:column>
+
+
+                            </p:dataTable>
+                            <div class="EmptyBox20"></div>
+                        </div>
+                    </p:panel>
+                </div>  
+            </div>  
+        </h:form>  
+        <p:separator > 
+        </p:separator > 
+
+
+
+
+
+    </ui:define>
+</ui:composition>

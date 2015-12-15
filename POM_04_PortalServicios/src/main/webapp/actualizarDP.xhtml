@@ -1,0 +1,131 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <div class="EmptyBox10"/>
+            <div class="Container100 BorBotLeaden ui-fluid">  
+                <div class="ContainerIndent">                      
+                    <div class="ui-grid ui-grid-responsive">
+                        <p:panel header="Actualizar datos personales">
+                            <div class="EmptyBox10"/>
+                            <div class="ui-grid-row">  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">  
+                                    <p:outputLabel for="correo" value="Cooreo Electrónico:" />
+                                </div> 
+                                <div class="ui-panelgrid-cell ui-grid-col-4">  
+                                    <p:inputText styleClass="Wid50" style="min-width:200px; width:200px;"  id="correo" placeholder="Email"  value="#{actualizaDatosController.segUsuario.email}" />
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">   
+                                    <p:outputLabel for="celular" value="Celular:" />
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-4">       
+                                    <p:inputText styleClass="Wid50" style="min-width:200px; width:200px;"  id="celular"  placeholder="Celular"  value="#{actualizaDatosController.segUsuario.celular}"/>                            
+                                </div>  
+                            </div> 
+                            <p:separator > 
+                            </p:separator > 
+                            <div class="ui-grid-row">  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">
+                                    <p:outputLabel for="ddom" value="Dirección Domicilio:" />
+                                </div> 
+                                <div class="ui-panelgrid-cell ui-grid-col-4">
+                                    <p:inputTextarea rows="4"  styleClass="Wid50" style="min-width:200px; width:200px;" id="ddom"  placeholder="Dirección de domicilio" value="#{actualizaDatosController.segUsuario.direccionDomicilio}"/>
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">
+                                    <p:outputLabel for="telfo" value="Teléfono Domicilio:" />
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-4">
+                                    <p:inputText styleClass="Wid50" style="min-width:200px; width:200px;" id="telfo"  placeholder="Telefono"  value="#{actualizaDatosController.segUsuario.telefono}"/>                           
+                                </div>  
+                            </div>
+                            <p:separator > 
+                            </p:separator > 
+                            <div class="ui-grid-row">  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">
+                                    <p:outputLabel for="provincia" class="Fs12" value="Provincia:" /> 
+                                </div> 
+                                <div class="ui-panelgrid-cell ui-grid-col-4">
+                                    <p:selectOneMenu id="provincia"   value="#{actualizaDatosController.segUsuario.cntPrvCodigo}"   styleClass="Wid50"  >
+                                        <f:selectItem itemLabel="Provincia" noSelectionOption="true" />
+                                        <f:selectItems value="#{actualizaDatosController.listProvincias}" var="item"  itemValue="#{item.codigo}" itemLabel="#{item.provincia}"  />
+                                        <f:ajax event="change"  render="@form" listener="#{actualizaDatosController.listen1(event)}"/>
+                                    </p:selectOneMenu>
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">
+                                    <p:outputLabel for="canton" value="Cantón:" /> 
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-4">
+                                    <p:selectOneMenu id="canton"  value="#{actualizaDatosController.segUsuario.cntCodigo}"   styleClass="Wid50"  >
+                                        <f:selectItem itemLabel="Cantón" noSelectionOption="true" />
+                                        <f:selectItems value="#{actualizaDatosController.cantoneses}" var="item"  itemValue="#{item.cantonesPK.codigo}" itemLabel="#{item.canton}"  />
+                                        <f:ajax event="change"  render="@form" listener="#{actualizaDatosController.listen2(event)}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="canton" />
+                                </div>  
+                            </div>
+                            <p:separator > 
+                            </p:separator > 
+                            <div class="ui-grid-row">  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">
+                                    <p:outputLabel for="parroquia" value="Parroquia:" />
+                                </div> 
+                                <div class="ui-panelgrid-cell ui-grid-col-4">
+                                    <p:selectOneMenu id="parroquia"  value="#{actualizaDatosController.segUsuario.codigo}"   styleClass="Wid50"  >
+                                        <f:selectItem itemLabel="Parroquias" noSelectionOption="true" />
+                                        <f:selectItems value="#{actualizaDatosController.parroquiases}" var="item"  itemValue="#{item.parroquiasPK.codigo}" itemLabel="#{item.parroquia}"  />
+                                        <f:ajax event="change"  render="@form" listener="#{actualizaDatosController.listen3(event)}"/>
+                                    </p:selectOneMenu>
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-4">
+                                </div>  
+                            </div>
+                            <p:separator > 
+                            </p:separator >
+                            <div class="ui-grid-row">  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">
+                                </div> 
+                                <div class="ui-panelgrid-cell ui-grid-col-4">
+                                    <p:commandButton value="Actualizar Datos"    
+                                                     id="cb1"   
+                                                     actionListener="#{actualizaDatosController.buttonGuardarDP(actionEvent)}" 
+                                                     process="@form"
+                                                     update="@this"
+                                                     style="width:150px;"
+                                                     >
+                                        <p:confirm header="Confirmation" message="Esta seguri de cambiar sus datos?" icon="ui-icon-alert" />
+                                    </p:commandButton>
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                        <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    </p:confirmDialog> 
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-2">
+                                </div>  
+                                <div class="ui-panelgrid-cell ui-grid-col-4">
+                                </div>  
+                            </div>  
+
+
+
+
+                        </p:panel>
+                    </div>  
+                </div>  
+            </div>  
+        </h:form>  
+
+        <div class="EmptyBox100"/>
+        <div class="EmptyBox100"/>
+
+    </ui:define>
+
+</ui:composition>
+

@@ -1,0 +1,131 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:form>  
+            <div class="Container100 BorBotLeaden ui-fluid">  
+                <div class="ContainerIndent">  
+                    <div class="FontBold Fs18 hardblue" style="margin: 15px 10px"> 
+                        Hospitalizaciones  
+                    </div>
+                    <div class="EmptyBox40"></div>
+                    <div class="EmptyBox40"></div>
+
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">  
+                            <div class="ui-panelgrid-cell ui-grid-col-2">
+                                <p:outputLabel   value="Fecha inicio(dd/mm/yyyy):" />
+                            </div> 
+                            <div class="ui-panelgrid-cell ui-grid-col-4">
+                                <p:calendar required="true" id="mask1"  style="width:150px;"   value="#{hospitalizacionController.date1}" pattern="dd/MM/yyyy" mask="true" >
+
+                                </p:calendar>
+                            </div>  
+                            <div class="ui-panelgrid-cell ui-grid-col-2"> 
+
+                            </div>  
+                            <div class="ui-panelgrid-cell ui-grid-col-4"> 
+
+                            </div> 
+
+                        </div>
+                        <p:separator></p:separator>
+                        <div class="EmptyBox40"></div>
+              
+                        
+                        <div class="ui-grid-row">  
+                            <div class="ui-panelgrid-cell ui-grid-col-2">
+                                <p:outputLabel   value="Fecha fin(dd/mm/yyyy):" />
+                            </div> 
+                            <div class="ui-panelgrid-cell ui-grid-col-4">
+                                <p:calendar  required="true" id="mask2" style="width:150px;"   value="#{hospitalizacionController.date2}" pattern="dd/MM/yyyy" mask="true" >
+
+                                </p:calendar>
+                            </div>  
+                            <div class="ui-panelgrid-cell ui-grid-col-2">
+                            </div>  
+                            <div class="ui-panelgrid-cell ui-grid-col-4">
+                            </div>  
+                        </div> 
+                        <div class="EmptyBox40"></div>
+                        <div class="ui-grid-row">  
+                            <div class="ui-panelgrid-cell ui-grid-col-2">
+                            </div> 
+                            <div class="ui-panelgrid-cell ui-grid-col-4">
+                                <p:commandButton  style="width: 66%;margin-left:15%;margin-right:15%;" process="@form"  update="@form" action="#{hospitalizacionController.click()}"   value="Buscar"/>
+                            </div>  
+                            <div class="ui-panelgrid-cell ui-grid-col-2">
+                            </div>  
+                            <div class="ui-panelgrid-cell ui-grid-col-4">
+                            </div>  
+                        </div>  
+
+                    </div>
+                </div>  
+            </div>  
+
+            <p:separator > 
+            </p:separator >  
+
+            <div class="Container100 BorBotLeaden ui-fluid">  
+                <div class="ContainerIndent"> 
+                    <div class="FontBold Fs18 hardblue" style="margin: 15px 10px"> 
+                        Detalle hospitalización  
+                    </div>
+                    <p:panel>
+                        <div class="ContainerIndent">
+
+                            <p:dataTable id="tbl1" 
+                                         reflow="true"   
+                                         style="width: 66%;margin-left:15%;margin-right:15%;"
+                                         value="#{hospitalizacionController.litaPermanencias}"
+                                         rows="10" paginator="true"
+                                         var="item">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText  value="DIAGNOSTICO"/>
+                                    </f:facet>
+                                    <h:outputText  value="#{item.ENFERMEDAD}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText  value="FECHA DE INGRESO"/>
+                                    </f:facet>
+                                    <h:outputText  value="#{item.FECHA_INGRESOs}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText  value="FECHA DE ALTA"/>
+                                    </f:facet>
+                                    <h:outputText  value="#{item.FECHA_ALTAs}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="No DIAS"/>
+                                    </f:facet>
+                                    <h:outputText  value="#{item.TOTAL_DIAS}"/>
+                                </p:column>
+                            </p:dataTable>
+                            <div class="EmptyBox20"></div>
+                        </div>
+                    </p:panel>
+                </div>  
+            </div>
+            <h:commandLink >                               
+                <p:graphicImage library="images" name="excel.png" width="24"/>
+                <p:dataExporter type="xls" target="tbl1" fileName="hospitalizaciones" />
+            </h:commandLink>
+        </h:form> 
+
+
+
+
+
+
+    </ui:define>
+
+</ui:composition>

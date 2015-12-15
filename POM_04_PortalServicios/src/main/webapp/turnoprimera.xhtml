@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+          <h:form>
+            <div class="Container100 BorBotLeaden ui-fluid">  
+                <div class="ContainerIndent"> 
+                    
+                     <p:panel header="Turnos Primera Vez">
+                        <div class="ContainerIndent">
+   
+                <p:dataTable reflow="true" style="width:70%;margin-left:15%;margin-right:15%;" rows="7" paginator="true"  value="#{turnosPrimeraController.listaturnossiguientes}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText  value="NOMBRE"/>
+                        </f:facet>
+                        <h:outputText  value="#{item.NOMBRE}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText  value="FECHA_DISPONIBLE"/>
+                        </f:facet>
+                        <h:outputText  value="#{item.FECHA_DISPONIBLE}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText  value="CONSULTORIO"/>
+                        </f:facet>
+                        <h:outputText  value="#{item.CONSULTORIO}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText  value="TURNOS DISPONIBLES"/>
+                        </f:facet>
+                        <h:outputText  value="#{item.DISPONIBLES}"/>
+                    </p:column>
+                </p:dataTable>
+                     </div>  
+            
+                     </p:panel>
+                </div>
+            </div>
+              
+                </h:form>
+    </ui:define>
+</ui:composition>
