@@ -10,8 +10,8 @@ import ec.mil.he1.pom_01_domain.Parroquias;
 import ec.mil.he1.pom_01_domain.Provincias;
 import ec.mil.he1.pom_01_domain.SegUsuario;
 import ec.mil.he1.pom_01_domain.VUsuariosClasif;
-import ec.mil.he1.pom_03_ejb.stateless.SegUsuarioFacadeRemote;
-import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunesRemote;
+import ec.mil.he1.pom_03_ejb.stateless.SegUsuarioFacade   ;
+import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes   ;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
@@ -37,11 +37,11 @@ import javax.servlet.http.HttpSession;
 public class ActualizaDatosController implements Serializable {
 
     @EJB
-    private transient SegUsuarioFacadeRemote segUsuarioFacade;
+    private transient SegUsuarioFacade    segUsuarioFacade;
 
     private static final long serialVersionUID = 5190460509652921601L;
     @EJB
-    private transient ListasComunesRemote listasComunes;
+    private transient ListasComunes    listasComunes;
     List<Cantones> cantoneses = new ArrayList<>();
 
     String proId = "";
@@ -150,11 +150,11 @@ public class ActualizaDatosController implements Serializable {
         return listasComunes.ListParroquias(proId, canId);
     }
 
-    public ListasComunesRemote getListasComunes() {
+    public ListasComunes    getListasComunes() {
         return listasComunes;
     }
 
-    public void setListasComunes(ListasComunesRemote listasComunes) {
+    public void setListasComunes(ListasComunes    listasComunes) {
         this.listasComunes = listasComunes;
     }
 

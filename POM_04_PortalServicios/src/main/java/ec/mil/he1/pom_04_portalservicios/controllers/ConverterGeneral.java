@@ -6,7 +6,7 @@
 package ec.mil.he1.pom_04_portalservicios.controllers;
 
 import ec.mil.he1.pom_01_domain.Provincias;
-import ec.mil.he1.pom_03_ejb.stateless.ProvinciasFacadeRemote;
+import ec.mil.he1.pom_03_ejb.stateless.ProvinciasFacade ;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
@@ -25,19 +25,19 @@ import javax.faces.convert.FacesConverter;
 public class ConverterGeneral implements Serializable {
 
     @EJB
-    private transient ProvinciasFacadeRemote provinciasFacade;
+    private transient ProvinciasFacade  provinciasFacade;
 
     /**
      * @return the provinciasFacade
      */
-    public ProvinciasFacadeRemote getProvinciasFacade() {
+    public ProvinciasFacade  getProvinciasFacade() {
         return provinciasFacade;
     }
 
     /**
      * @param provinciasFacade the provinciasFacade to set
      */
-    public void setProvinciasFacade(ProvinciasFacadeRemote provinciasFacade) {
+    public void setProvinciasFacade(ProvinciasFacade  provinciasFacade) {
         this.provinciasFacade = provinciasFacade;
     }
 

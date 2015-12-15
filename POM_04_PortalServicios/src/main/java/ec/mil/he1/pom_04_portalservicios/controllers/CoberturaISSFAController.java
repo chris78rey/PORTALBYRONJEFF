@@ -8,7 +8,7 @@ package ec.mil.he1.pom_04_portalservicios.controllers;
 import ec.mil.he1.pom_01_domain.SegUsuario;
 import ec.mil.he1.pom_01_domain.VDetallePaciente;
 import ec.mil.he1.pom_01_domain.VUsuariosClasif;
-import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunesRemote;
+import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes ;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
@@ -31,7 +31,7 @@ import javax.servlet.http.HttpSession;
 public class CoberturaISSFAController implements Serializable {
 
     @EJB
-    private ListasComunesRemote listasComunes;
+    private ListasComunes  listasComunes;
     private static final long serialVersionUID = 1754638594827420575L;
     private VUsuariosClasif vUsuariosClasif;
     private SegUsuario segUsuario = new SegUsuario();

@@ -7,8 +7,8 @@ package ec.mil.he1.pom_04_portalservicios.controllers;
 
 import ec.mil.he1.pom_01_domain.Cantones;
 import ec.mil.he1.pom_01_domain.Provincias;
-import ec.mil.he1.pom_03_ejb.stateless.CantonesFacadeRemote;
-import ec.mil.he1.pom_03_ejb.stateless.ProvinciasFacadeRemote;
+import ec.mil.he1.pom_03_ejb.stateless.CantonesFacade ;
+import ec.mil.he1.pom_03_ejb.stateless.ProvinciasFacade ;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
@@ -36,7 +36,7 @@ public class Converters implements Serializable {
     public static class ProvinciasControllerConverter implements Converter {
 
         @EJB
-        private ProvinciasFacadeRemote provinciasFacade;
+        private ProvinciasFacade  provinciasFacade;
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
@@ -80,14 +80,14 @@ public class Converters implements Serializable {
 //        private static final String SEPARATOR = "#";
 //        private static final String SEPARATOR_ESCAPED = "\\#";
 //        @EJB
-//        private CantonesFacadeRemote cantonesFacadeRemote;
+//        private CantonesFacade  cantonesFacade ;
 //
 //        @Override
 //        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
 //            if (value == null || value.length() == 0) {
 //                return null;
 //            }
-//            Cantones find = cantonesFacadeRemote.find(value);
+//            Cantones find = cantonesFacade .find(value);
 //            return find;
 //
 //        }

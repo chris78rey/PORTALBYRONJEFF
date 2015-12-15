@@ -39,11 +39,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>ec.mil.he1</groupId>
-            <artifactId>POM_02_REMOTO</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>

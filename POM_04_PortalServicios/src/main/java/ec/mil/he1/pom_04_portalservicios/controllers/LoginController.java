@@ -7,8 +7,8 @@ package ec.mil.he1.pom_04_portalservicios.controllers;
 
 import ec.mil.he1.pom_01_domain.SegUsuario;
 import ec.mil.he1.pom_01_domain.VUsuariosClasif;
-import ec.mil.he1.pom_03_ejb.stateless.VUsuariosClasifFacadeRemote;
-import ec.mil.he1.pom_03_ejb.stateless.procesos.LoginSessionBeanRemote;
+import ec.mil.he1.pom_03_ejb.stateless.VUsuariosClasifFacade  ;
+import ec.mil.he1.pom_03_ejb.stateless.procesos.LoginSessionBean  ;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -32,7 +32,7 @@ public class LoginController implements Serializable {
 
     String paginaSiguiente = "";
     @EJB
-    private transient VUsuariosClasifFacadeRemote vUsuariosClasifFacade;
+    private transient VUsuariosClasifFacade   vUsuariosClasifFacade;
     private VUsuariosClasif vUsuariosClasif = new VUsuariosClasif();
 
     private static final long serialVersionUID = -9036861759497150346L;
@@ -41,7 +41,7 @@ public class LoginController implements Serializable {
     String mensaje = "";
 
     @EJB
-    private transient LoginSessionBeanRemote loginSessionBean;
+    private transient LoginSessionBean   loginSessionBean;
 
     public String getPassword() {
         return password;
@@ -62,11 +62,11 @@ public class LoginController implements Serializable {
     private String username = "1702860329";
     private String email = "";
 
-    public LoginSessionBeanRemote getLoginSessionBean() {
+    public LoginSessionBean   getLoginSessionBean() {
         return loginSessionBean;
     }
 
-    public void setLoginSessionBean(LoginSessionBeanRemote loginSessionBean) {
+    public void setLoginSessionBean(LoginSessionBean   loginSessionBean) {
         this.loginSessionBean = loginSessionBean;
     }
 

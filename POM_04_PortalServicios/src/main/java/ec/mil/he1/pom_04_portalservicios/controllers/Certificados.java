@@ -6,7 +6,7 @@
 
 package ec.mil.he1.pom_04_portalservicios.controllers;
 
-import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunesRemote;
+import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes  ;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
@@ -27,7 +27,7 @@ public class Certificados implements Serializable {
         return listasComunes.listaBuscaFechasCertificados(pCriterio);
     }
     @EJB
-    private ListasComunesRemote listasComunes;
+    private ListasComunes   listasComunes;
 
     /** Creates a new instance of Certificados */
     public Certificados() {
