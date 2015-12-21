@@ -290,7 +290,7 @@ public class ListasComunes  {
         Query query = em.createNativeQuery(sql);
 
         List<Object[]> results = query.getResultList();
-        List data = new ArrayList<HashMap>();
+        List data = new ArrayList<>();
 
         if (!results.isEmpty()) {
             for (Object[] result : results) {
