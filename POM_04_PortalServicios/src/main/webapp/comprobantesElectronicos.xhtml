@@ -9,11 +9,16 @@
         <h:form>
             <div class="Container100 BorBotLeaden ui-fluid">  
                 <div class="ContainerIndent"> 
-                    
-                     <p:panel header="Comprobante Electrónico">
+
+                    <p:panel header="Comprobante Electrónico">
                         <div class="ContainerIndent">
-                    
-                            <p:dataTable reflow="true" style="width:70%;margin-left:15%;margin-right:15%;" value="#{comprobanteElectronicoController.listaFacturasPorHC}" var="item">
+
+                            <p:dataTable 
+                                reflow="true" 
+                                style="width:70%;margin-left:15%;margin-right:15%;" 
+                                value="#{comprobanteElectronicoController.listaFacturasPorHC}" 
+                                var="item"
+                                >
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText  value="RUC"/>
@@ -50,17 +55,18 @@
                                     <f:facet name="header">
                                         <h:outputText  value="PDF"/>
                                     </f:facet>
-                                    <h:commandLink  value="PDF"  action="#{factura.buscaIDFactura(item.CODIGO, item.FCT_CAJA)}"/>
+
+                                    <h:commandLink  value="PDF"  action="#{comprobanteElectronicoController.buscaIDFactura(item.CODIGO, item.FCT_CAJA)}"/>
 
                                 </p:column>
                             </p:dataTable>
-                   
-                         </div>  
-            
-                     </p:panel>
+
+                        </div>  
+
+                    </p:panel>
                 </div>
             </div>
-              
-                </h:form>
+
+        </h:form>
     </ui:define>
 </ui:composition>

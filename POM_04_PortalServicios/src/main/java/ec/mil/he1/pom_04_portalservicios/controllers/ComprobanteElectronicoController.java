@@ -7,7 +7,7 @@ package ec.mil.he1.pom_04_portalservicios.controllers;
 
 import ec.mil.he1.pom_01_domain.SegUsuario;
 import ec.mil.he1.pom_01_domain.VUsuariosClasif;
-import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes ;
+import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
@@ -46,17 +46,18 @@ import org.primefaces.model.StreamedContent;
  */
 @Named(value = "comprobanteElectronicoController")
 @ViewScoped
-public class  ComprobanteElectronicoController implements Serializable {
-    
+public class ComprobanteElectronicoController implements Serializable {
+
     private static final long serialVersionUID = -1;
     @EJB
-    private ListasComunes  listasComunes;
+    private ListasComunes listasComunes;
     private SegUsuario segUsuario = new SegUsuario();
     private List<Map> listaFacturasPorHC = new ArrayList<>();
     private VUsuariosClasif vUsuariosClasif;
-    
+
     @Resource(name = "JDBCSERVICIOSHE1")
     private DataSource dataSourceHe1;
+
     @PostConstruct
     private void init() {
         out.println("@PostConstruct");
@@ -73,22 +74,22 @@ public class  ComprobanteElectronicoController implements Serializable {
 
     public List<Map> getListaFacturasPorHC() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-
-        listaFacturasPorHC = listasComunes.listaFacturasPorHC(     segUsuario.getNumeroHc().toString()          ); 
+        listaFacturasPorHC = listasComunes.listaFacturasPorHC(segUsuario.getNumeroHc().toString());
         return listaFacturasPorHC;
     }
-  public String buscaIDFactura(String rid, String valor) {
+
+    public String buscaIDFactura(String rid, String valor) {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         try {
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            String URL = ec.getRequestContextPath()+ "/Factura?kkjdndj=" + rid + "&sddvaxd=" + valor;
             //PASA PARAM ID de la factura y la caha
-            ec.redirect(ec.getRequestContextPath() + "/xldrHnd?kkjdndj=" + rid + "&sddvaxd=" + valor);
+            ec.redirect(URL);
         } catch (IOException ex) {
             Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    }   
+    }
 
     public StreamedContent doReport() throws Exception {
         // setting up some basic stuff
@@ -133,9 +134,10 @@ public class  ComprobanteElectronicoController implements Serializable {
             System.out.println("e = " + e.getLocalizedMessage());
         } finally {
             connection.close();
-        }return new DefaultStreamedContent(new ByteArrayInputStream(bytes));
-       } 
-    
+        }
+        return new DefaultStreamedContent(new ByteArrayInputStream(bytes));
+    }
+
     public ComprobanteElectronicoController() {
     }
 

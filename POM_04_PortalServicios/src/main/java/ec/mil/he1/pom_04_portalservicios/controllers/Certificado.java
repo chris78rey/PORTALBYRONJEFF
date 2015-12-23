@@ -5,7 +5,6 @@
  */
 package ec.mil.he1.pom_04_portalservicios.controllers;
 
-import ec.mil.he1.pom_03_ejb.stateless.SegUrlsFacade;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +12,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.ejb.EJB;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +32,7 @@ import net.sf.jasperreports.engine.JasperReport;
  */
 @WebServlet(name = "Certificado", urlPatterns = {"/certMed"})
 public class Certificado extends HttpServlet {
+    private static final long serialVersionUID = 3608264086159631537L;
 
     @Resource(name = "JDBCSERVICIOSHE1")
     private DataSource dataSourceHe1;

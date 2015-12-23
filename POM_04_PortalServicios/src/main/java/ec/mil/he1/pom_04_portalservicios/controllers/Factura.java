@@ -6,7 +6,6 @@
 package ec.mil.he1.pom_04_portalservicios.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -78,6 +77,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         } finally {
             //se cierra la conexion
             connection.close();
+
         }
 
         response.setHeader("Content-disposition", "inline;filename=morningShift.pdf;");
