@@ -31,6 +31,10 @@ public class Document implements Serializable, Comparable<Document> {
 		this.type = type;
 	}
 
+    public Document() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 	public String getName() {
 		return name;
 	}
