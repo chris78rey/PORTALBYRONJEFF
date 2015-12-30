@@ -7,8 +7,8 @@ package ec.mil.he1.pom_04_portalservicios.controllers;
 
 import ec.mil.he1.pom_01_domain.SegUsuario;
 import ec.mil.he1.pom_01_domain.VUsuariosClasif;
-import ec.mil.he1.pom_03_ejb.stateless.VUsuariosClasifFacade  ;
-import ec.mil.he1.pom_03_ejb.stateless.procesos.LoginSessionBean  ;
+import ec.mil.he1.pom_03_ejb.stateless.VUsuariosClasifFacade;
+import ec.mil.he1.pom_03_ejb.stateless.procesos.LoginSessionBean;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.naming.NamingException;
@@ -32,7 +33,7 @@ public class LoginController implements Serializable {
 
     String paginaSiguiente = "";
     @EJB
-    private transient VUsuariosClasifFacade   vUsuariosClasifFacade;
+    private transient VUsuariosClasifFacade vUsuariosClasifFacade;
     private VUsuariosClasif vUsuariosClasif = new VUsuariosClasif();
 
     private static final long serialVersionUID = -9036861759497150346L;
@@ -41,7 +42,7 @@ public class LoginController implements Serializable {
     String mensaje = "";
 
     @EJB
-    private transient LoginSessionBean   loginSessionBean;
+    private transient LoginSessionBean loginSessionBean;
 
     public String getPassword() {
         return password;
@@ -62,11 +63,11 @@ public class LoginController implements Serializable {
     private String username = "0603362989";
     private String email = "";
 
-    public LoginSessionBean   getLoginSessionBean() {
+    public LoginSessionBean getLoginSessionBean() {
         return loginSessionBean;
     }
 
-    public void setLoginSessionBean(LoginSessionBean   loginSessionBean) {
+    public void setLoginSessionBean(LoginSessionBean loginSessionBean) {
         this.loginSessionBean = loginSessionBean;
     }
 
@@ -91,13 +92,13 @@ public class LoginController implements Serializable {
         switch (Login) {
             case "1":
                 mensaje = "Su usuario y clave estan correctas";
-                segUsuario = loginSessionBean.usuarioByCC(this.username);
+                setSegUsuario(loginSessionBean.usuarioByCC(this.username));
                 //con este objeto se tiene ya los nombres
-                setvUsuariosClasif(vUsuariosClasifFacade.find(segUsuario.getId()));
+                setvUsuariosClasif(vUsuariosClasifFacade.find(getSegUsuario().getId()));
                 FacesContext facesContext = FacesContext.getCurrentInstance();
                 HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
                 session.setAttribute("vUsuariosClasif", getvUsuariosClasif());
-                session.setAttribute("segUsuario", segUsuario);
+                session.setAttribute("segUsuario", getSegUsuario());
                 BigDecimal bd = getvUsuariosClasif().getActualizarDatos();
                 if (bd.equals(new BigDecimal("1"))) {
                     paginaSiguiente = "actualizarDP.xhtml";
@@ -162,4 +163,9 @@ public class LoginController implements Serializable {
         this.vUsuariosClasif = vUsuariosClasif;
     }
 
+    public void logout() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.invalidateSession();
+        ec.redirect(ec.getRequestContextPath() + "/");
+    }
 }
