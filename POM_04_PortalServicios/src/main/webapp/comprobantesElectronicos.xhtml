@@ -56,12 +56,22 @@
                                         <h:outputText  value="PDF"/>
                                     </f:facet>
 
-                                    <h:commandLink  value="PDF"  action="#{comprobanteElectronicoController.buscaIDFactura(item.CODIGO, item.FCT_CAJA)}"/>
+                                    <p:commandLink  value="PDF" update="@all"  action="#{comprobanteElectronicoController.buscaIDFactura(item.CODIGO, item.FCT_CAJA)}"/>
 
                                 </p:column>
                             </p:dataTable>
 
-                        </div>  
+                        </div> 
+                        <div class="EmptyBox10"></div>
+                        <div class="EmptyBox10"></div>
+                        <div class="EmptyBox10"></div>
+
+                        <p:media 
+                            cache="false" 
+                            value="#{comprobanteElectronicoController.content}" 
+                            width="100%"  
+                            height="600px" 
+                            player="pdf"/>
 
                     </p:panel>
                 </div>
