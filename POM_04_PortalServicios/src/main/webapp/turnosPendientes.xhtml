@@ -11,14 +11,9 @@
         <h:form>  
             <div class="Container100 BorBotLeaden ui-fluid">  
                 <div class="ContainerIndent"> 
-                    <div class="FontBold Fs18 hardblue" style="margin: 15px 10px"> 
-                        Turnos Pendientes  
-                    </div>
-                    <p:panel>
+                   
+                  <p:panel header="Turnos Pendientes">
                         <div class="ContainerIndent">
-
-                            <div class="EmptyBox40"></div>
-                            <div class="EmptyBox40"></div>
 
                             <p:dataTable id="tbl"  style="width: 66%;margin-left:15%;margin-right:15%;"    value="#{hturno.listaDeTurnos}" var="item" reflow="true">
                                 <p:column>
@@ -54,9 +49,6 @@
                                 </p:column>
 
                             </p:dataTable>
-
-                            <div class="EmptyBox20"></div>
-
                         </div>
                     </p:panel>
                 </div>  
