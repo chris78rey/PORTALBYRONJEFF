@@ -7,7 +7,6 @@
 
     <ui:define name="content">
 
-        <h:form>
             <div class="EmptyBox10"/>
             <div class="Container100 BorBotLeaden ui-fluid">  
                 <div class="ContainerIndent">           
@@ -33,17 +32,26 @@
                                         <f:facet name="header"  >
                                             <h:outputText  value="FECHA DE GENERACIÓN"/>
                                         </f:facet>
-                                        <p:commandLink value="#{item.FECHA}" target="_blank" action="#{certificados.accionImprimirPDF(item.NUMERO)}" />
+                                        <p:commandLink value="#{item.FECHA}" update="@all" action="#{certificados.accionImprimirPDF(item.NUMERO)}" />
 
                                     </p:column>
                                 </p:dataTable> 
+
+                                <div class="EmptyBox10"></div>
+                                <div class="EmptyBox10"></div>
+                                <div class="EmptyBox10"></div>
+                                <p:media id="media1" cache="false" 
+                                         value="#{certificados.content}"  
+                                         width="100%"  
+                                         height="600px" 
+                                         player="pdf"/>
                             </h:form>
                             <div class="EmptyBox20"></div>
                         </div>
                     </p:panel>
                 </div>  
             </div>  
-        </h:form>  
+        
         <p:separator > 
         </p:separator > 
     </ui:define>

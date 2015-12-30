@@ -8,35 +8,62 @@ package ec.mil.he1.pom_04_portalservicios.controllers;
 import ec.mil.he1.pom_01_domain.SegUsuario;
 import ec.mil.he1.pom_01_domain.VUsuariosClasif;
 import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import static java.lang.System.out;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.faces.context.ExternalContext;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import static javax.faces.context.FacesContext.getCurrentInstance;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
  * @author christian_ruiz
  */
 @Named(value = "certificados")
-@ViewScoped
+@SessionScoped
 public class Certificados implements Serializable {
 
     private static final long serialVersionUID = -754931071112804936L;
+
+    @Resource(name = "JDBCSERVICIOSHE1")
+    private DataSource dataSourceHe1;
 
     @EJB
     private ListasComunes listasComunes;
     VUsuariosClasif vUsuariosClasif = new VUsuariosClasif();
     SegUsuario segUsuario = new SegUsuario();
+
+    public StreamedContent getContent() {
+        return content;
+    }
+
+    public void setContent(StreamedContent content) {
+        this.content = content;
+    }
+
+    private StreamedContent content;
 
     /**
      * Creates a new instance of Certificados
@@ -68,11 +95,60 @@ public class Certificados implements Serializable {
     }
 
     public String accionImprimirPDF(String id) throws IOException {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect("http://servicios.he1.mil.ec/Paciente-war/certMed?kkjdndj=" + vUsuariosClasif.getNumeroHc() + "&sddvaxd=" + id);
+        onPrerender(id);
         return null;
+    }
+
+    public void onPrerender(String id) {
+
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+            ServletContext servletContext = session.getServletContext();
+
+            HashMap hashMap = new HashMap();
+            Connection connection = dataSourceHe1.getConnection();
+            byte[] bytes = null;
+            try {
+                //aca se coloca los parámetros del reporte
+
+                hashMap.put("hc", vUsuariosClasif.getNumeroHc().toString());
+                hashMap.put("numeroCertificado", id);
+                hashMap.put("sello", "http://servicios.he1.mil.ec/AppImg/resources/images/logoHe1_blanco.png");
+
+                //dentro de la carpeta WEB-INF se debe colocar los reportes, 
+                //en este caso se coloca los .jrxml no el .jasper
+                String jrxmlPath = servletContext.getRealPath("/WEB-INF/report/");
+                // directories where the report files are 
+                String reportfile = "CertificadoMedico.jrxml";
+                String jrxmlfile = jrxmlPath + "/" + reportfile;
+
+                //InputStream is = this.getClass().getClassLoader().getResourceAsStream("/WEB-INF/report/"+jrxmlfile);
+                JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlfile);            //is.close();
+
+                //se obtiene la conexion a la base de datos
+                connection = dataSourceHe1.getConnection();
+                //se envia los parametros en este caso el compilado, el hashmap con los param del reporte y la conexión 
+                //a la base de datos
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, hashMap, connection);
+                //se almacena la impresión en un arreglo de bytes    
+                bytes = JasperExportManager.exportReportToPdf(jasperPrint);
+
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+
+                content = new DefaultStreamedContent(byteArrayInputStream, "application/pdf");
+
+            } catch (JRException e) {
+                //en caso de error imprimirlo
+                System.out.println("e = " + e.getLocalizedMessage());
+            } finally {
+                //se cierra la conexion
+                connection.close();
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("e = " + e.getLocalizedMessage());
+        }
     }
 }
