@@ -90,7 +90,8 @@ public class Certificados implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 
-        data = listasComunes.listaBuscaFechasCertificados(vUsuariosClasif.getNumeroHc().toString());
+        data = listasComunes.listaBuscaFechasCertificados(vUsuariosClasif.getNumeroHc().toString()); 
+        
         return data;
     }
 
