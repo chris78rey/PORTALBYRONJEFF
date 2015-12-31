@@ -13,6 +13,8 @@ import ec.mil.he1.pom_01_domain.Provincias;
 import ec.mil.he1.pom_01_domain.Provincias_;
 import ec.mil.he1.pom_01_domain.VDetallePaciente;
 import ec.mil.he1.pom_01_domain.VDetallePaciente_;
+import ec.mil.he1.pom_03_ejb.stateless.VTurnosReservados;
+import ec.mil.he1.pom_03_ejb.stateless.VTurnosReservados_;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -417,6 +419,15 @@ public class ListasComunes  {
         return data;
 
     }
-
+     
+     
+    public List<VTurnosReservados> findTurnosReservadosByHC(String par) {     
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<VTurnosReservados> cq = cb.createQuery(VTurnosReservados.class);
+        Root<VTurnosReservados> root = cq.from(VTurnosReservados.class);
+        cq.where(cb.equal(root.get(VTurnosReservados_.pcnNumeroHc), par));
+        List resultList = em.createQuery(cq).setHint("eclipselink.refresh", "true").getResultList();
+        return resultList;
+    }
     
 }

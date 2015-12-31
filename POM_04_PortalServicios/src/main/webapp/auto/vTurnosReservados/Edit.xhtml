@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VTurnosReservadosEditDlg" widgetVar="VTurnosReservadosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCancelaTurno.EditVTurnosReservadosTitle}">
+            <h:form id="VTurnosReservadosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vTurnosReservadosController.selected != null}">
+                        <p:outputLabel  value="#{bundleCancelaTurno.EditVTurnosReservadosLabel_servicio}" for="servicio" />
+                        <p:outputLabel  id="servicio" value="#{vTurnosReservadosController.selected.servicio}" title="#{bundleCancelaTurno.EditVTurnosReservadosTitle_servicio}" />
+                        <p:outputLabel value="#{bundleCancelaTurno.EditVTurnosReservadosLabel_consultorio}" for="consultorio" />
+                        <p:outputLabel id="consultorio" value="#{vTurnosReservadosController.selected.consultorio}" title="#{bundleCancelaTurno.EditVTurnosReservadosTitle_consultorio}" />
+                        <p:outputLabel value="#{bundleCancelaTurno.EditVTurnosReservadosLabel_fecha}" for="fecha" />
+                        <p:outputLabel id="fecha" value="#{vTurnosReservadosController.selected.fecha}" title="#{bundleCancelaTurno.EditVTurnosReservadosTitle_fecha}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vTurnosReservadosController.update}" value="#{bundleCancelaTurno.Save}" update="display,:VTurnosReservadosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'VTurnosReservadosEditDialog');"/>
+                    <p:commandButton value="#{bundleCancelaTurno.Cancel}" onclick="VTurnosReservadosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

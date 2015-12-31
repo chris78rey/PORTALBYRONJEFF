@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundleCancelaTurno.ListVTurnosReservadosTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <h:form id="VTurnosReservadosListForm">
+                <p:panel header="#{bundleCancelaTurno.ListVTurnosReservadosTitle}">
+                    <p:dataTable id="datalist" value="#{vTurnosReservadosController.listaturnosReservadoses}" var="item"
+                                 selectionMode="single" selection="#{vTurnosReservadosController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.numeroId}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 reflow="true"
+                                 style="width: 66%;margin-left:15%;margin-right:15%;" 
+                                 >
+
+                        <p:ajax event="rowSelect"   update="editButton"/>
+                        <p:ajax event="rowUnselect" update="editButton"/>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleCancelaTurno.ListVTurnosReservadosTitle_numeroId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleCancelaTurno.ListVTurnosReservadosTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleCancelaTurno.ListVTurnosReservadosTitle_pcnNumeroHc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pcnNumeroHc}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleCancelaTurno.ListVTurnosReservadosTitle_servicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.servicio}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleCancelaTurno.ListVTurnosReservadosTitle_consultorio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.consultorio}"/>
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundleCancelaTurno.Edit}" update=":VTurnosReservadosEditForm" oncomplete="PF('VTurnosReservadosEditDialog').show()" disabled="#{empty vTurnosReservadosController.selected}"/>
+
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+
+            <p:dialog id="VTurnosReservadosEditDlg" widgetVar="VTurnosReservadosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCancelaTurno.EditVTurnosReservadosTitle}">
+                <h:form id="VTurnosReservadosEditForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" rendered="#{vTurnosReservadosController.selected != null}">
+                            <p:outputLabel value="#{bundleCancelaTurno.EditVTurnosReservadosLabel_numeroId}" for="numeroId" />
+                            <p:outputLabel id="numeroId" value="#{vTurnosReservadosController.selected.numeroId}" title="#{bundleCancelaTurno.EditVTurnosReservadosTitle_numeroId}" />
+                            <p:outputLabel value="#{bundleCancelaTurno.EditVTurnosReservadosLabel_pcnNumeroHc}" for="pcnNumeroHc" />
+                            <p:outputLabel id="pcnNumeroHc" value="#{vTurnosReservadosController.selected.pcnNumeroHc}" title="#{bundleCancelaTurno.EditVTurnosReservadosTitle_pcnNumeroHc}" />
+                            <p:outputLabel value="#{bundleCancelaTurno.EditVTurnosReservadosLabel_servicio}" for="servicio" />
+                            <p:outputLabel id="servicio" value="#{vTurnosReservadosController.selected.servicio}" title="#{bundleCancelaTurno.EditVTurnosReservadosTitle_servicio}" />
+                            <p:outputLabel value="#{bundleCancelaTurno.EditVTurnosReservadosLabel_consultorio}" for="consultorio" />
+                            <p:outputLabel id="consultorio" value="#{vTurnosReservadosController.selected.consultorio}" title="#{bundleCancelaTurno.EditVTurnosReservadosTitle_consultorio}" />
+                            <p:outputLabel value="#{bundleCancelaTurno.EditVTurnosReservadosLabel_fecha}" for="fecha" />
+                            <p:outputLabel id="fecha" value="#{vTurnosReservadosController.selected.fecha}" title="#{bundleCancelaTurno.EditVTurnosReservadosTitle_fecha}" />
+
+                        </p:panelGrid>
+                        <p:commandButton actionListener="#{vTurnosReservadosController.update}" value="#{bundleCancelaTurno.Save}" update="display,:VTurnosReservadosListForm:datalist" oncomplete="handleSubmit(args, 'VTurnosReservadosEditDialog');"/>
+                        <p:commandButton value="#{bundleCancelaTurno.Cancel}" onclick="VTurnosReservadosEditDialog.hide()"/>
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+

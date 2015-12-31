@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VTurnosReservadosViewDlg" widgetVar="VTurnosReservadosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCancelaTurno.ViewVTurnosReservadosTitle}">
+            <h:form id="VTurnosReservadosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vTurnosReservadosController.selected != null}">
+                        <h:outputText value="#{bundleCancelaTurno.ViewVTurnosReservadosLabel_numeroId}"/>
+                        <h:outputText value="#{vTurnosReservadosController.selected.numeroId}" title="#{bundleCancelaTurno.ViewVTurnosReservadosTitle_numeroId}"/>
+                        <h:outputText value="#{bundleCancelaTurno.ViewVTurnosReservadosLabel_pcnNumeroHc}"/>
+                        <h:outputText value="#{vTurnosReservadosController.selected.pcnNumeroHc}" title="#{bundleCancelaTurno.ViewVTurnosReservadosTitle_pcnNumeroHc}"/>
+                        <h:outputText value="#{bundleCancelaTurno.ViewVTurnosReservadosLabel_servicio}"/>
+                        <h:outputText value="#{vTurnosReservadosController.selected.servicio}" title="#{bundleCancelaTurno.ViewVTurnosReservadosTitle_servicio}"/>
+                        <h:outputText value="#{bundleCancelaTurno.ViewVTurnosReservadosLabel_consultorio}"/>
+                        <h:outputText value="#{vTurnosReservadosController.selected.consultorio}" title="#{bundleCancelaTurno.ViewVTurnosReservadosTitle_consultorio}"/>
+                        <h:outputText value="#{bundleCancelaTurno.ViewVTurnosReservadosLabel_fecha}"/>
+                        <h:outputText value="#{vTurnosReservadosController.selected.fecha}" title="#{bundleCancelaTurno.ViewVTurnosReservadosTitle_fecha}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundleCancelaTurno.Close}" onclick="VTurnosReservadosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
