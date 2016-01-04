@@ -34,5 +34,9 @@
             <base-name>/BundleCancelaTurno</base-name>
             <var>bundleCancelaTurno</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/BundleCclave</base-name>
+            <var>bundleCclave</var>
+        </resource-bundle>
     </application>
 </faces-config>

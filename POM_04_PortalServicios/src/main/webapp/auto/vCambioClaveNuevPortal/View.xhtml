@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VCambioClaveNuevPortalViewDlg" widgetVar="VCambioClaveNuevPortalViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCclave.ViewVCambioClaveNuevPortalTitle}">
+            <h:form id="VCambioClaveNuevPortalViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vCambioClaveNuevPortalController.selected != null}">
+                        <h:outputText value="#{bundleCclave.ViewVCambioClaveNuevPortalLabel_ID}"/>
+                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.ID}" title="#{bundleCclave.ViewVCambioClaveNuevPortalTitle_ID}"/>
+                        <h:outputText value="#{bundleCclave.ViewVCambioClaveNuevPortalLabel_cedulaLogin}"/>
+                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.cedulaLogin}" title="#{bundleCclave.ViewVCambioClaveNuevPortalTitle_cedulaLogin}"/>
+                        <h:outputText value="#{bundleCclave.ViewVCambioClaveNuevPortalLabel_usuClave}"/>
+                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.usuClave}" title="#{bundleCclave.ViewVCambioClaveNuevPortalTitle_usuClave}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundleCclave.Close}" onclick="VCambioClaveNuevPortalViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

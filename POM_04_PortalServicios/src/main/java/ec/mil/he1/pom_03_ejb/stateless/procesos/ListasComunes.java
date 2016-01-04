@@ -11,6 +11,9 @@ import ec.mil.he1.pom_01_domain.Parroquias;
 import ec.mil.he1.pom_01_domain.Parroquias_;
 import ec.mil.he1.pom_01_domain.Provincias;
 import ec.mil.he1.pom_01_domain.Provincias_;
+import ec.mil.he1.pom_01_domain.SegPerfil_;
+import ec.mil.he1.pom_01_domain.VCambioClaveNuevPortal;
+import ec.mil.he1.pom_01_domain.VCambioClaveNuevPortal_;
 import ec.mil.he1.pom_01_domain.VDetallePaciente;
 import ec.mil.he1.pom_01_domain.VDetallePaciente_;
 import ec.mil.he1.pom_03_ejb.stateless.VTurnosReservados;
@@ -74,7 +77,7 @@ public class ListasComunes {
     }
 
     public List<Parroquias> ListParroquias(String proId, String canId) {
- 
+
         if (canId.length() != 0) {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Parroquias> cq = cb.createQuery(Parroquias.class);
@@ -419,6 +422,15 @@ public class ListasComunes {
         CriteriaQuery<VTurnosReservados> cq = cb.createQuery(VTurnosReservados.class);
         Root<VTurnosReservados> root = cq.from(VTurnosReservados.class);
         cq.where(cb.equal(root.get(VTurnosReservados_.pcnNumeroHc), par));
+        List resultList = em.createQuery(cq).setHint("eclipselink.refresh", "true").getResultList();
+        return resultList;
+    }
+
+    public List<VCambioClaveNuevPortal> findVistaCambioClave(String cedula) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<VCambioClaveNuevPortal> cq = cb.createQuery(VCambioClaveNuevPortal.class);
+        Root<VCambioClaveNuevPortal> root = cq.from(VCambioClaveNuevPortal.class);
+        cq.where(cb.equal(root.get(VCambioClaveNuevPortal_.cedulaLogin), cedula));
         List resultList = em.createQuery(cq).setHint("eclipselink.refresh", "true").getResultList();
         return resultList;
     }

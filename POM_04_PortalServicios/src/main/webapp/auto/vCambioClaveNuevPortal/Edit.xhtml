@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VCambioClaveNuevPortalEditDlg" widgetVar="VCambioClaveNuevPortalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCclave.EditVCambioClaveNuevPortalTitle}">
+            <h:form id="VCambioClaveNuevPortalEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vCambioClaveNuevPortalController.selected != null}">
+                        <p:outputLabel value="#{bundleCclave.EditVCambioClaveNuevPortalLabel_ID}" for="ID" />
+                        <p:inputText id="ID" value="#{vCambioClaveNuevPortalController.selected.ID}" title="#{bundleCclave.EditVCambioClaveNuevPortalTitle_ID}" required="true" requiredMessage="#{bundleCclave.EditVCambioClaveNuevPortalRequiredMessage_ID}"/>
+                        <p:outputLabel value="#{bundleCclave.EditVCambioClaveNuevPortalLabel_cedulaLogin}" for="cedulaLogin" />
+                        <p:inputText id="cedulaLogin" value="#{vCambioClaveNuevPortalController.selected.cedulaLogin}" title="#{bundleCclave.EditVCambioClaveNuevPortalTitle_cedulaLogin}" />
+                        <p:outputLabel value="#{bundleCclave.EditVCambioClaveNuevPortalLabel_usuClave}" for="usuClave" />
+                        <p:inputText id="usuClave" value="#{vCambioClaveNuevPortalController.selected.usuClave}" title="#{bundleCclave.EditVCambioClaveNuevPortalTitle_usuClave}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vCambioClaveNuevPortalController.update}" value="#{bundleCclave.Save}" update="display,:VCambioClaveNuevPortalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'VCambioClaveNuevPortalEditDialog');"/>
+                    <p:commandButton value="#{bundleCclave.Cancel}" onclick="VCambioClaveNuevPortalEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
