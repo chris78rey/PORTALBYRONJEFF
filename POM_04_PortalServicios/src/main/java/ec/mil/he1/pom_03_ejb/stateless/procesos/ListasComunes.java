@@ -34,7 +34,7 @@ import javax.persistence.criteria.Root;
  */
 @Stateless
 @PermitAll
-public class ListasComunes  {
+public class ListasComunes {
 
     @PersistenceContext(unitName = "PU-EJBPORTAL")
     private EntityManager em;
@@ -43,7 +43,6 @@ public class ListasComunes  {
         return em;
     }
 
-     
     public List<Provincias> ListProvincias() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Provincias> cq = cb.createQuery(Provincias.class);
@@ -53,7 +52,6 @@ public class ListasComunes  {
         return resultList;
     }
 
-     
     public List<Cantones> ListCantones(String proId) {
         if (proId.length() != 0) {
             CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -75,8 +73,8 @@ public class ListasComunes  {
 
     }
 
-     
     public List<Parroquias> ListParroquias(String proId, String canId) {
+ 
         if (canId.length() != 0) {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Parroquias> cq = cb.createQuery(Parroquias.class);
@@ -307,9 +305,7 @@ public class ListasComunes  {
 
     }
 
-    
     //METODO PARA REALIZAR LA FACTURACION 
-     
     public List<Map> listaFacturasPorHC(String pHC) {
         String sql
                 = "  SELECT FACTURA_ELECTRONICA_SRI.FCT_NUMERO codigo,"
@@ -353,7 +349,6 @@ public class ListasComunes  {
                 + "         estab || '-' || pto_emi || '-' || FACTURA_ELECTRONICA_SRI.SECUENCIAL"
                 + " ORDER BY FACTURA_ELECTRONICA_SRI.FECHA_EMISION desc    ";
 
-        
         Query query = em.createNativeQuery(sql);
 
         List<Object[]> results = query.getResultList();
@@ -376,10 +371,9 @@ public class ListasComunes  {
         return data;
 
     }
-    
+
     //// CONSULTA PARA VERIFICAR LOS TURNOS POR PRIMERA VEZ
-     
-     public List<Map> listaturnossiguientes() {
+    public List<Map> listaturnossiguientes() {
         String sql
                 = "  SELECT MV_SERVICIOS_PORTAL.NOMBRE,   "
                 + "            TO_CHAR (MV_SERVICIOS_PORTAL.FECHA_DISPONIBLE,   "
@@ -419,9 +413,8 @@ public class ListasComunes  {
         return data;
 
     }
-     
-     
-    public List<VTurnosReservados> findTurnosReservadosByHC(String par) {     
+
+    public List<VTurnosReservados> findTurnosReservadosByHC(String par) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<VTurnosReservados> cq = cb.createQuery(VTurnosReservados.class);
         Root<VTurnosReservados> root = cq.from(VTurnosReservados.class);
@@ -429,5 +422,5 @@ public class ListasComunes  {
         List resultList = em.createQuery(cq).setHint("eclipselink.refresh", "true").getResultList();
         return resultList;
     }
-    
+
 }

@@ -10,18 +10,17 @@ import ec.mil.he1.pom_01_domain.Parroquias;
 import ec.mil.he1.pom_01_domain.Provincias;
 import ec.mil.he1.pom_01_domain.SegUsuario;
 import ec.mil.he1.pom_01_domain.VUsuariosClasif;
-import ec.mil.he1.pom_03_ejb.stateless.SegUsuarioFacade   ;
-import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes   ;
+import ec.mil.he1.pom_03_ejb.stateless.SegUsuarioFacade;
+import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import java.io.Serializable;
-import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import static javax.faces.context.FacesContext.getCurrentInstance;
 import javax.faces.event.ActionEvent;
@@ -33,15 +32,15 @@ import javax.servlet.http.HttpSession;
  * @author christian_ruiz
  */
 @Named(value = "actualizaDatosController")
-@ViewScoped
+@SessionScoped
 public class ActualizaDatosController implements Serializable {
 
     @EJB
-    private transient SegUsuarioFacade    segUsuarioFacade;
+    private transient SegUsuarioFacade segUsuarioFacade;
 
     private static final long serialVersionUID = 5190460509652921601L;
     @EJB
-    private transient ListasComunes    listasComunes;
+    private transient ListasComunes listasComunes;
     List<Cantones> cantoneses = new ArrayList<>();
 
     String proId = "";
@@ -54,34 +53,40 @@ public class ActualizaDatosController implements Serializable {
 
     @PostConstruct
     private void init() {
-        out.println("@PostConstruct");
+       
         FacesContext facesContext = getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         vUsuariosClasif = (VUsuariosClasif) session.getAttribute("vUsuariosClasif");
         segUsuario = (SegUsuario) session.getAttribute("segUsuario");
+
         proId = segUsuario.getCntPrvCodigo();
-        cantoneses = listasComunes.ListCantones(segUsuario.getCntPrvCodigo());
-        parroquiases = ListParroquias(segUsuario.getCntCodigo());
-        System.out.println("segUsuario.getCodigo() = " + segUsuario.getCodigo());
+        canId = segUsuario.getCntCodigo();
+        parrId = segUsuario.getCodigo();
+
+        cantoneses = listasComunes.ListCantones(proId);
+        parroquiases = ListParroquias(canId);
+
     }
 
     public ActualizaDatosController() {
     }
 
     public void listen2(AjaxBehaviorEvent event) {
+   
         parroquiases.clear();
-        parroquiases = ListParroquias(segUsuario.getCntCodigo());
+        parroquiases = ListParroquias(canId);
 
     }
 
     public void listen3(AjaxBehaviorEvent event) {
-        System.out.println("" + segUsuario.getCodigo());
-
-        out.println("ingresa");
+ 
     }
 
     public void buttonGuardarDP(ActionEvent actionEvent) throws SQLException {
 //        segUsuario.setActualizarDatos(BigInteger.ZERO);
+        segUsuario.setCntPrvCodigo(proId);
+        segUsuario.setCntCodigo(canId);
+        segUsuario.setCodigo(parrId);
         segUsuarioFacade.edit(segUsuario);
         segUsuario = segUsuarioFacade.find(segUsuario.getId());
         //almacenar la data en la tabla de seg usuario y en el atributo de sesion
@@ -96,7 +101,7 @@ public class ActualizaDatosController implements Serializable {
     }
 
     public void setProId(String proId) {
-        out.println("proId = " + proId);
+
         this.proId = proId;
     }
 
@@ -138,23 +143,17 @@ public class ActualizaDatosController implements Serializable {
         return parroquiases;
     }
 
-    /**
-     * @param parroquiases the parroquiases to set
-     */
-    public void setParroquiases(List<Parroquias> parroquiases) {
-        this.parroquiases = parroquiases;
-    }
     private List<Parroquias> parroquiases = new ArrayList<>();
 
     public List<Parroquias> ListParroquias(String canId) {
         return listasComunes.ListParroquias(proId, canId);
     }
 
-    public ListasComunes    getListasComunes() {
+    public ListasComunes getListasComunes() {
         return listasComunes;
     }
 
-    public void setListasComunes(ListasComunes    listasComunes) {
+    public void setListasComunes(ListasComunes listasComunes) {
         this.listasComunes = listasComunes;
     }
 
@@ -172,7 +171,9 @@ public class ActualizaDatosController implements Serializable {
 
     public void listen1(AjaxBehaviorEvent event) {
         cantoneses.clear();
-        cantoneses = listasComunes.ListCantones(segUsuario.getCntPrvCodigo());
+        parroquiases.clear();
+        canId = "-1";        
+        cantoneses = listasComunes.ListCantones(proId);
     }
 
     /**

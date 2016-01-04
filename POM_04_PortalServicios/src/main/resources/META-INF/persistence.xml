@@ -2,6 +2,9 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="PU-EJBPORTAL" transaction-type="JTA">
     <jta-data-source>jdbc/servicioshe1</jta-data-source>
+    <class>ec.mil.he1.pom_01_domain.Cantones</class>
+    <class>ec.mil.he1.pom_01_domain.Parroquias</class>
+    <class>ec.mil.he1.pom_01_domain.Provincias</class>
     <class>ec.mil.he1.pom_01_domain.SegLogsSistema</class>
     <class>ec.mil.he1.pom_01_domain.SegMenu</class>
     <class>ec.mil.he1.pom_01_domain.SegMenuHabilita</class>
@@ -15,13 +18,10 @@
     <class>ec.mil.he1.pom_01_domain.SegUsuarioPerfil</class>
     <class>ec.mil.he1.pom_01_domain.SegUsuariosExternos</class>
     <class>ec.mil.he1.pom_01_domain.SeguimientosSociales</class>
+    <class>ec.mil.he1.pom_01_domain.VDetallePaciente</class>
     <class>ec.mil.he1.pom_01_domain.VProvCanParr</class>
     <class>ec.mil.he1.pom_01_domain.VUsuarioHe1</class>
     <class>ec.mil.he1.pom_01_domain.VUsuariosClasif</class>
-    <class>ec.mil.he1.pom_01_domain.Cantones</class>
-    <class>ec.mil.he1.pom_01_domain.Parroquias</class>
-    <class>ec.mil.he1.pom_01_domain.Provincias</class>
-    <class>ec.mil.he1.pom_01_domain.VDetallePaciente</class>
     <class>ec.mil.he1.pom_03_ejb.stateless.VTurnosReservados</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <validation-mode>NONE</validation-mode>

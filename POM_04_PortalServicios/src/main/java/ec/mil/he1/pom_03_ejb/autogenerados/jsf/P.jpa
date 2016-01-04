@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings theme="CLASSIC" jaxb-support="false" id="_14515673471801" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" xmlns:ns4="http://nbmodeler.java.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <jpa:default-class class="CantonesPK">
+        <jpa:embeddable>true</jpa:embeddable>
+        <jpa:attribute name="prvCodigo" attribute-type="String" visibile="true"/>
+        <jpa:attribute name="codigo" attribute-type="String" visibile="true"/>
+    </jpa:default-class>
+    <jpa:default-class class="ParroquiasPK">
+        <jpa:embeddable>true</jpa:embeddable>
+        <jpa:attribute name="cntPrvCodigo" attribute-type="String" visibile="true"/>
+        <jpa:attribute name="cntCodigo" attribute-type="String" visibile="true"/>
+        <jpa:attribute name="codigo" attribute-type="String" visibile="true"/>
+    </jpa:default-class>
+    <jpa:default-class class="SeguimientosSocialesPK">
+        <jpa:embeddable>true</jpa:embeddable>
+        <jpa:attribute name="fchsclNumero" attribute-type="int" visibile="true"/>
+        <jpa:attribute name="gstsclCodigo" attribute-type="String" visibile="true"/>
+        <jpa:attribute name="fecha" attribute-type="java.util.Date" visibile="true"/>
+    </jpa:default-class>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="EMBEDDEDID" compositePrimaryKeyClass="CantonesPK" static-metamodel="false" abstract="false" class="Cantones" visibile="true" minimized="false" id="_14515673472724">
+        <jpa:attributes>
+            <jpa:id name="prvCodigo" attribute-type="String" visibile="true" id="_14515673472907">
+                <jpa:column name="PRV_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="PRV_CODIGO"/>
+            </jpa:id>
+            <jpa:id name="codigo" attribute-type="String" visibile="true" id="_14515673472928">
+                <jpa:column name="CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="CODIGO"/>
+            </jpa:id>
+            <jpa:embedded-id name="cantonesPK" attribute-type="CantonesPK" visibile="true" id="_14515673472765"/>
+            <jpa:basic name="canton" attribute-type="String" visibile="true" id="_14515673472776">
+                <jpa:column name="CANTON" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="Cantones.findAll">
+            <jpa:query>SELECT c FROM Cantones c</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="CANTONES"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="EMBEDDEDID" compositePrimaryKeyClass="ParroquiasPK" static-metamodel="false" abstract="false" class="Parroquias" visibile="true" minimized="false" id="_14515673473459">
+        <jpa:attributes>
+            <jpa:id name="cntPrvCodigo" attribute-type="String" visibile="true" id="_145156734740712">
+                <jpa:column name="CNT_PRV_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="CNT_PRV_CODIGO"/>
+            </jpa:id>
+            <jpa:id name="cntCodigo" attribute-type="String" visibile="true" id="_145156734740713">
+                <jpa:column name="CNT_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="CNT_CODIGO"/>
+            </jpa:id>
+            <jpa:id name="codigo" attribute-type="String" visibile="true" id="_145156734740714">
+                <jpa:column name="CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="CODIGO"/>
+            </jpa:id>
+            <jpa:embedded-id name="parroquiasPK" attribute-type="ParroquiasPK" visibile="true" id="_145156734734510"/>
+            <jpa:basic name="parroquia" attribute-type="String" visibile="true" id="_145156734734511">
+                <jpa:column name="PARROQUIA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="Parroquias.findAll">
+            <jpa:query>SELECT p FROM Parroquias p</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="PARROQUIAS"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="Provincias" visibile="true" minimized="false" id="_145156734745515">
+        <jpa:attributes>
+            <jpa:id name="codigo" attribute-type="String" visibile="true" id="_145156734745516">
+                <jpa:column name="CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="CODIGO"/>
+            </jpa:id>
+            <jpa:basic name="provincia" attribute-type="String" visibile="true" id="_145156734745517">
+                <jpa:column name="PROVINCIA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="Provincias.findAll">
+            <jpa:query>SELECT p FROM Provincias p</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="PROVINCIAS"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegLogsSistema" visibile="true" minimized="false" id="_145156734750518">
+        <jpa:attributes>
+            <jpa:id name="lsiId" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734750519">
+                <jpa:column name="LSI_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="LSI_ID"/>
+            </jpa:id>
+            <jpa:basic name="lsiMensaje" attribute-type="String" visibile="true" id="_145156734750520">
+                <jpa:column name="LSI_MENSAJE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="lsiFechaEvento" attribute-type="java.util.Date" visibile="true" id="_145156734750521">
+                <jpa:column name="LSI_FECHA_EVENTO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="modulo" attribute-type="String" visibile="true" id="_145156734750522">
+                <jpa:column name="MODULO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegLogsSistema.findAll">
+            <jpa:query>SELECT s FROM SegLogsSistema s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_LOGS_SISTEMA"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegMenu" visibile="true" minimized="false" id="_145156734755223">
+        <jpa:attributes>
+            <jpa:id name="menId" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734755224">
+                <jpa:column name="MEN_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="MEN_ID"/>
+            </jpa:id>
+            <jpa:basic name="modId" attribute-type="java.math.BigInteger" visibile="true" id="_145156734755225">
+                <jpa:column name="MOD_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="menIdRecursivo" attribute-type="java.math.BigInteger" visibile="true" id="_145156734755226">
+                <jpa:column name="MEN_ID_RECURSIVO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="menNivel" attribute-type="java.math.BigInteger" visibile="true" id="_145156734755327">
+                <jpa:column name="MEN_NIVEL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="menOrden" attribute-type="java.math.BigInteger" visibile="true" id="_145156734755328">
+                <jpa:column name="MEN_ORDEN" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="menDisplay" attribute-type="String" visibile="true" id="_145156734755329">
+                <jpa:column name="MEN_DISPLAY" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="menUrl" attribute-type="String" visibile="true" id="_145156734755330">
+                <jpa:column name="MEN_URL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="menHide" attribute-type="String" visibile="true" id="_145156734755331">
+                <jpa:column name="MEN_HIDE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegMenu.findAll">
+            <jpa:query>SELECT s FROM SegMenu s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_MENU"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegMenuHabilita" visibile="true" minimized="false" id="_145156734760032">
+        <jpa:attributes>
+            <jpa:id name="mhaId" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734760033">
+                <jpa:column name="MHA_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="MHA_ID"/>
+            </jpa:id>
+            <jpa:basic name="perId" attribute-type="java.math.BigInteger" visibile="true" id="_145156734760034">
+                <jpa:column name="PER_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="menId" attribute-type="java.math.BigInteger" visibile="true" id="_145156734760035">
+                <jpa:column name="MEN_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="mhaHabilita" attribute-type="java.math.BigInteger" visibile="true" id="_145156734760036">
+                <jpa:column name="MHA_HABILITA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="mhaGuardar" attribute-type="java.math.BigInteger" visibile="true" id="_145156734760037">
+                <jpa:column name="MHA_GUARDAR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="mhaNuevoRegistro" attribute-type="java.math.BigInteger" visibile="true" id="_145156734760038">
+                <jpa:column name="MHA_NUEVO_REGISTRO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="mhaEliminar" attribute-type="java.math.BigInteger" visibile="true" id="_145156734760039">
+                <jpa:column name="MHA_ELIMINAR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="mhaEditar" attribute-type="java.math.BigInteger" visibile="true" id="_145156734760040">
+                <jpa:column name="MHA_EDITAR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegMenuHabilita.findAll">
+            <jpa:query>SELECT s FROM SegMenuHabilita s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_MENU_HABILITA"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegMinisterioFinanzas" visibile="true" minimized="false" id="_145156734764541">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734764542">
+                <jpa:column name="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="ID"/>
+            </jpa:id>
+            <jpa:basic name="trlId" attribute-type="java.math.BigInteger" visibile="true" id="_145156734764543">
+                <jpa:column name="TRL_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="mfiAnio" attribute-type="String" visibile="true" id="_145156734764544">
+                <jpa:column name="MFI_ANIO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="mfiMes" attribute-type="String" visibile="true" id="_145156734764645">
+                <jpa:column name="MFI_MES" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="mfiCodigo" attribute-type="String" visibile="true" id="_145156734764646">
+                <jpa:column name="MFI_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="mfiDesc" attribute-type="String" visibile="true" id="_145156734764647">
+                <jpa:column name="MFI_DESC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="activo" attribute-type="java.math.BigInteger" visibile="true" id="_145156734764648">
+                <jpa:column name="ACTIVO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="orden" attribute-type="java.math.BigInteger" visibile="true" id="_145156734764649">
+                <jpa:column name="ORDEN" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegMinisterioFinanzas.findAll">
+            <jpa:query>SELECT s FROM SegMinisterioFinanzas s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_MINISTERIO_FINANZAS"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegModulos" visibile="true" minimized="false" id="_145156734769150">
+        <jpa:attributes>
+            <jpa:id name="modId" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734769151">
+                <jpa:column name="MOD_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="MOD_ID"/>
+            </jpa:id>
+            <jpa:basic name="orgId" attribute-type="java.math.BigInteger" visibile="true" id="_145156734769152">
+                <jpa:column name="ORG_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="modNombreModulo" attribute-type="String" visibile="true" id="_145156734769153">
+                <jpa:column name="MOD_NOMBRE_MODULO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="modFechaCreacion" attribute-type="java.util.Date" visibile="true" id="_145156734769154">
+                <jpa:column name="MOD_FECHA_CREACION" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="modUrl" attribute-type="String" visibile="true" id="_145156734769155">
+                <jpa:column name="MOD_URL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="modUrlSiguiente" attribute-type="String" visibile="true" id="_145156734769156">
+                <jpa:column name="MOD_URL_SIGUIENTE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="modLogoName" attribute-type="String" visibile="true" id="_145156734769157">
+                <jpa:column name="MOD_LOGO_NAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="modTitulo" attribute-type="String" visibile="true" id="_145156734769158">
+                <jpa:column name="MOD_TITULO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="urlCambia" attribute-type="java.math.BigInteger" visibile="true" id="_145156734769159">
+                <jpa:column name="URL_CAMBIA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="modOrden" attribute-type="java.math.BigInteger" visibile="true" id="_145156734769160">
+                <jpa:column name="MOD_ORDEN" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="modCampoAsocUsuario" attribute-type="String" visibile="true" id="_145156734769161">
+                <jpa:column name="MOD_CAMPO_ASOC_USUARIO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegModulos.findAll">
+            <jpa:query>SELECT s FROM SegModulos s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_MODULOS"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegOrganizacion" visibile="true" minimized="false" id="_145156734773862">
+        <jpa:attributes>
+            <jpa:id name="orgId" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734773863">
+                <jpa:column name="ORG_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="ORG_ID"/>
+            </jpa:id>
+            <jpa:basic name="orgNombre" attribute-type="String" visibile="true" id="_145156734773864">
+                <jpa:column name="ORG_NOMBRE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="orgRuc" attribute-type="String" visibile="true" id="_145156734773865">
+                <jpa:column name="ORG_RUC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegOrganizacion.findAll">
+            <jpa:query>SELECT s FROM SegOrganizacion s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_ORGANIZACION"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegPerfil" visibile="true" minimized="false" id="_145156734778166">
+        <jpa:attributes>
+            <jpa:id name="perId" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734778167">
+                <jpa:column name="PER_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="PER_ID"/>
+            </jpa:id>
+            <jpa:basic name="modId" attribute-type="java.math.BigInteger" visibile="true" id="_145156734778168">
+                <jpa:column name="MOD_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="perDescripcion" attribute-type="String" visibile="true" id="_145156734778169">
+                <jpa:column name="PER_DESCRIPCION" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="perFechaCreacion" attribute-type="java.util.Date" visibile="true" id="_145156734778170">
+                <jpa:column name="PER_FECHA_CREACION" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="perDefault" attribute-type="java.math.BigInteger" visibile="true" id="_145156734778171">
+                <jpa:column name="PER_DEFAULT" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="perOrdenPresentacion" attribute-type="java.math.BigInteger" visibile="true" id="_145156734778172">
+                <jpa:column name="PER_ORDEN_PRESENTACION" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegPerfil.findAll">
+            <jpa:query>SELECT s FROM SegPerfil s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_PERFIL"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegSoftwareBitacora" visibile="true" minimized="false" id="_145156734782673">
+        <jpa:attributes>
+            <jpa:id name="modulo" attribute-type="String" visibile="true" id="_145156734782674">
+                <jpa:column name="MODULO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="MODULO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:named-query name="SegSoftwareBitacora.findAll">
+            <jpa:query>SELECT s FROM SegSoftwareBitacora s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_SOFTWARE_BITACORA"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegUrls" visibile="true" minimized="false" id="_145156734786975">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734786976">
+                <jpa:column name="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="ID"/>
+            </jpa:id>
+            <jpa:basic name="urlDescrip" attribute-type="String" visibile="true" id="_145156734786977">
+                <jpa:column name="URL_DESCRIP" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="url" attribute-type="String" visibile="true" id="_145156734786978">
+                <jpa:column name="URL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegUrls.findAll">
+            <jpa:query>SELECT s FROM SegUrls s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_URLS"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegUsuario" visibile="true" minimized="false" id="_145156734791479">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734791480">
+                <jpa:column name="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="ID"/>
+            </jpa:id>
+            <jpa:basic name="usuTipo" attribute-type="Character" visibile="true" id="_145156734791481">
+                <jpa:column name="USU_TIPO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="numeroHc" attribute-type="java.math.BigInteger" visibile="true" id="_145156734791482">
+                <jpa:column name="NUMERO_HC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="uexId" attribute-type="java.math.BigInteger" visibile="true" id="_145156734791483">
+                <jpa:column name="UEX_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="perCodigo" attribute-type="String" visibile="true" id="_145156734791484">
+                <jpa:column name="PER_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="usuClave" attribute-type="String" visibile="true" id="_145156734791485">
+                <jpa:column name="USU_CLAVE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="nomId" attribute-type="java.math.BigInteger" visibile="true" id="_145156734791486">
+                <jpa:column name="NOM_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="cedulaLogin" attribute-type="String" visibile="true" id="_145156734791487">
+                <jpa:column name="CEDULA_LOGIN" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="email" attribute-type="String" visibile="true" id="_145156734791488">
+                <jpa:column name="EMAIL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="telefono" attribute-type="String" visibile="true" id="_145156734791589">
+                <jpa:column name="TELEFONO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="celular" attribute-type="String" visibile="true" id="_145156734791590">
+                <jpa:column name="CELULAR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="direccionDomicilio" attribute-type="String" visibile="true" id="_145156734791591">
+                <jpa:column name="DIRECCION_DOMICILIO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="cntPrvCodigo" attribute-type="String" visibile="true" id="_145156734791592">
+                <jpa:column name="CNT_PRV_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="cntCodigo" attribute-type="String" visibile="true" id="_145156734791593">
+                <jpa:column name="CNT_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="codigo" attribute-type="String" visibile="true" id="_145156734791594">
+                <jpa:column name="CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="inactiva" attribute-type="Character" visibile="true" id="_145156734791595">
+                <jpa:column name="INACTIVA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="ocultar" attribute-type="java.math.BigInteger" visibile="true" id="_145156734791596">
+                <jpa:column name="OCULTAR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="actualizarDatos" attribute-type="java.math.BigInteger" visibile="true" id="_145156734791597">
+                <jpa:column name="ACTUALIZAR_DATOS" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegUsuario.findAll">
+            <jpa:query>SELECT s FROM SegUsuario s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_USUARIO"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegUsuarioPerfil" visibile="true" minimized="false" id="_145156734796098">
+        <jpa:attributes>
+            <jpa:id name="umoId" attribute-type="java.math.BigDecimal" visibile="true" id="_145156734796099">
+                <jpa:column name="UMO_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="UMO_ID"/>
+            </jpa:id>
+            <jpa:basic name="perId" attribute-type="java.math.BigInteger" visibile="true" id="_1451567347960100">
+                <jpa:column name="PER_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="codigoPersonal" attribute-type="String" visibile="true" id="_1451567347960101">
+                <jpa:column name="CODIGO_PERSONAL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="umoFechaCreacion" attribute-type="java.util.Date" visibile="true" id="_1451567347960102">
+                <jpa:column name="UMO_FECHA_CREACION" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="umoActivo" attribute-type="java.math.BigInteger" visibile="true" id="_1451567347960103">
+                <jpa:column name="UMO_ACTIVO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="usuId" attribute-type="java.math.BigInteger" visibile="true" id="_1451567347960104">
+                <jpa:column name="USU_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegUsuarioPerfil.findAll">
+            <jpa:query>SELECT s FROM SegUsuarioPerfil s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_USUARIO_PERFIL"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="SegUsuariosExternos" visibile="true" minimized="false" id="_1451567348004105">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.math.BigDecimal" visibile="true" id="_1451567348004106">
+                <jpa:column name="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="ID"/>
+            </jpa:id>
+            <jpa:basic name="useUsuario" attribute-type="String" visibile="true" id="_1451567348004107">
+                <jpa:column name="USE_USUARIO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="useDependenciaUnidad" attribute-type="String" visibile="true" id="_1451567348004108">
+                <jpa:column name="USE_DEPENDENCIA_UNIDAD" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="useFechaCreacion" attribute-type="java.util.Date" visibile="true" id="_1451567348004109">
+                <jpa:column name="USE_FECHA_CREACION" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SegUsuariosExternos.findAll">
+            <jpa:query>SELECT s FROM SegUsuariosExternos s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEG_USUARIOS_EXTERNOS"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="EMBEDDEDID" compositePrimaryKeyClass="SeguimientosSocialesPK" static-metamodel="false" abstract="false" class="SeguimientosSociales" visibile="true" minimized="false" id="_1451567348048110">
+        <jpa:attributes>
+            <jpa:id name="fchsclNumero" attribute-type="int" visibile="true" id="_1451567348058117">
+                <jpa:column name="FCHSCL_NUMERO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="FCHSCL_NUMERO"/>
+            </jpa:id>
+            <jpa:id name="gstsclCodigo" attribute-type="String" visibile="true" id="_1451567348058118">
+                <jpa:column name="GSTSCL_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="GSTSCL_CODIGO"/>
+            </jpa:id>
+            <jpa:id name="fecha" attribute-type="java.util.Date" visibile="true" id="_1451567348058119">
+                <jpa:column name="FECHA" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+                <jpa:sequence-generator name="FECHA"/>
+            </jpa:id>
+            <jpa:embedded-id name="seguimientosSocialesPK" attribute-type="SeguimientosSocialesPK" visibile="true" id="_1451567348048111"/>
+            <jpa:basic name="prsCodigo" attribute-type="String" visibile="true" id="_1451567348048112">
+                <jpa:column name="PRS_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="observacion" attribute-type="String" visibile="true" id="_1451567348048113">
+                <jpa:column name="OBSERVACION" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="tiempo" attribute-type="java.util.Date" visibile="true" id="_1451567348048114">
+                <jpa:column name="TIEMPO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="efectiva" attribute-type="String" visibile="true" id="_1451567348048115">
+                <jpa:column name="EFECTIVA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="camaFasec" attribute-type="String" visibile="true" id="_1451567348048116">
+                <jpa:column name="CAMA_FASEC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="SeguimientosSociales.findAll">
+            <jpa:query>SELECT s FROM SeguimientosSociales s</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="SEGUIMIENTOS_SOCIALES"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="VDetallePaciente" visibile="true" minimized="false" id="_1451567348103120">
+        <jpa:attributes>
+            <jpa:id name="numeroHc" attribute-type="Integer" visibile="true" id="_1451567348103121">
+                <jpa:column name="NUMERO_HC" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="NUMERO_HC"/>
+            </jpa:id>
+            <jpa:basic name="derecho" attribute-type="String" visibile="true" id="_1451567348103122">
+                <jpa:column name="DERECHO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="fuerza" attribute-type="String" visibile="true" id="_1451567348103123">
+                <jpa:column name="FUERZA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="gradom" attribute-type="String" visibile="true" id="_1451567348103124">
+                <jpa:column name="GRADOM" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="tipoDependencia" attribute-type="String" visibile="true" id="_1451567348103125">
+                <jpa:column name="TIPO_DEPENDENCIA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="logeado" attribute-type="String" visibile="true" id="_1451567348103126">
+                <jpa:column name="LOGEADO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="primerNombre" attribute-type="String" visibile="true" id="_1451567348103127">
+                <jpa:column name="PRIMER_NOMBRE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="apellidoPaterno" attribute-type="String" visibile="true" id="_1451567348103128">
+                <jpa:column name="APELLIDO_PATERNO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="sexo" attribute-type="String" visibile="true" id="_1451567348103129">
+                <jpa:column name="SEXO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="estadoCivil" optional="false" attribute-type="String" visibile="true" id="_1451567348103130">
+                <jpa:column name="ESTADO_CIVIL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="clasificacion" optional="false" attribute-type="String" visibile="true" id="_1451567348103131">
+                <jpa:column name="CLASIFICACION" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="apellidoMaterno" attribute-type="String" visibile="true" id="_1451567348103132">
+                <jpa:column name="APELLIDO_MATERNO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="segundoNombre" attribute-type="String" visibile="true" id="_1451567348103133">
+                <jpa:column name="SEGUNDO_NOMBRE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="cedula" attribute-type="String" visibile="true" id="_1451567348103134">
+                <jpa:column name="CEDULA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="fechaNacimiento" attribute-type="java.util.Date" visibile="true" id="_1451567348103135">
+                <jpa:column name="FECHA_NACIMIENTO" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="numeroAfiliacionIess" attribute-type="Long" visibile="true" id="_1451567348103136">
+                <jpa:column name="NUMERO_AFILIACION_IESS" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="ocpCodigo" attribute-type="String" visibile="true" id="_1451567348103137">
+                <jpa:column name="OCP_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="bloqueado" attribute-type="String" visibile="true" id="_1451567348103138">
+                <jpa:column name="BLOQUEADO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="tipoPaciente" optional="false" attribute-type="String" visibile="true" id="_1451567348103139">
+                <jpa:column name="TIPO_PACIENTE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="email" attribute-type="String" visibile="true" id="_1451567348103140">
+                <jpa:column name="EMAIL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="numeroHcAnterior" attribute-type="Long" visibile="true" id="_1451567348103141">
+                <jpa:column name="NUMERO_HC_ANTERIOR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="fuerza1" attribute-type="String" visibile="true" id="_1451567348103142">
+                <jpa:column name="FUERZA_" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="grado" attribute-type="String" visibile="true" id="_1451567348103143">
+                <jpa:column name="GRADO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="situacion" attribute-type="String" visibile="true" id="_1451567348103144">
+                <jpa:column name="SITUACION" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="idIssfaTitular" attribute-type="String" visibile="true" id="_1451567348103145">
+                <jpa:column name="ID_ISSFA_TITULAR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="idIssfa" attribute-type="String" visibile="true" id="_1451567348104146">
+                <jpa:column name="ID_ISSFA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="esTitular" attribute-type="String" visibile="true" id="_1451567348104147">
+                <jpa:column name="ES_TITULAR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="telefono" attribute-type="String" visibile="true" id="_1451567348104148">
+                <jpa:column name="TELEFONO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="telefonoTrabajo" attribute-type="String" visibile="true" id="_1451567348104149">
+                <jpa:column name="TELEFONO_TRABAJO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="celular" attribute-type="String" visibile="true" id="_1451567348104150">
+                <jpa:column name="CELULAR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="VDetallePaciente.findAll">
+            <jpa:query>SELECT v FROM VDetallePaciente v</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="V_DETALLE_PACIENTE"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="VProvCanParr" visibile="true" minimized="false" id="_1451567348147151">
+        <jpa:attributes>
+            <jpa:id name="rid" attribute-type="String" visibile="true" id="_1451567348147152">
+                <jpa:column name="RID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="RID"/>
+            </jpa:id>
+            <jpa:basic name="provinciasCodigo" optional="false" attribute-type="String" visibile="true" id="_1451567348147153">
+                <jpa:column name="PROVINCIAS_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="cantonesCodigo" optional="false" attribute-type="String" visibile="true" id="_1451567348147154">
+                <jpa:column name="CANTONES_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="parroquiasCodigo" optional="false" attribute-type="String" visibile="true" id="_1451567348147155">
+                <jpa:column name="PARROQUIAS_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="provincia" optional="false" attribute-type="String" visibile="true" id="_1451567348147156">
+                <jpa:column name="PROVINCIA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="canton" optional="false" attribute-type="String" visibile="true" id="_1451567348147157">
+                <jpa:column name="CANTON" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="parroquia" optional="false" attribute-type="String" visibile="true" id="_1451567348147158">
+                <jpa:column name="PARROQUIA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="VProvCanParr.findAll">
+            <jpa:query>SELECT v FROM VProvCanParr v</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="V_PROV_CAN_PARR"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="VUsuarioHe1" visibile="true" minimized="false" id="_1451567348191159">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.math.BigDecimal" visibile="true" id="_1451567348191161">
+                <jpa:column name="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="ID"/>
+            </jpa:id>
+            <jpa:basic name="tipoUser" attribute-type="String" visibile="true" id="_1451567348191160">
+                <jpa:column name="TIPO_USER" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="usuTipo" optional="false" attribute-type="Character" visibile="true" id="_1451567348191162">
+                <jpa:column name="USU_TIPO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="numeroHc" attribute-type="java.math.BigInteger" visibile="true" id="_1451567348191163">
+                <jpa:column name="NUMERO_HC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="uexId" attribute-type="java.math.BigInteger" visibile="true" id="_1451567348191164">
+                <jpa:column name="UEX_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="perCodigo" attribute-type="String" visibile="true" id="_1451567348192165">
+                <jpa:column name="PER_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="usuClave" attribute-type="String" visibile="true" id="_1451567348192166">
+                <jpa:column name="USU_CLAVE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="nomId" attribute-type="java.math.BigInteger" visibile="true" id="_1451567348192167">
+                <jpa:column name="NOM_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="cedulaLogin" attribute-type="String" visibile="true" id="_1451567348192168">
+                <jpa:column name="CEDULA_LOGIN" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="hc" attribute-type="java.math.BigInteger" visibile="true" id="_1451567348192169">
+                <jpa:column name="HC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="usuExt" attribute-type="java.math.BigInteger" visibile="true" id="_1451567348192170">
+                <jpa:column name="USU_EXT" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="personal" attribute-type="String" visibile="true" id="_1451567348192171">
+                <jpa:column name="PERSONAL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="nomina" attribute-type="java.math.BigInteger" visibile="true" id="_1451567348192172">
+                <jpa:column name="NOMINA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="cargoEnPersonal" attribute-type="String" visibile="true" id="_1451567348192173">
+                <jpa:column name="CARGO_EN_PERSONAL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="VUsuarioHe1.findAll">
+            <jpa:query>SELECT v FROM VUsuarioHe1 v</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="V_USUARIO_HE1"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="VUsuariosClasif" visibile="true" minimized="false" id="_1451567348238174">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.math.BigDecimal" visibile="true" id="_1451567348238175">
+                <jpa:column name="ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="ID"/>
+            </jpa:id>
+            <jpa:basic name="tipoUser" attribute-type="String" visibile="true" id="_1451567348238176">
+                <jpa:column name="TIPO_USER" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="cedulaLogin" attribute-type="String" visibile="true" id="_1451567348238177">
+                <jpa:column name="CEDULA_LOGIN" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="apellidos" attribute-type="String" visibile="true" id="_1451567348238178">
+                <jpa:column name="APELLIDOS" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="nombres" attribute-type="String" visibile="true" id="_1451567348238179">
+                <jpa:column name="NOMBRES" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="celular" attribute-type="String" visibile="true" id="_1451567348238180">
+                <jpa:column name="CELULAR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="idIssfa" attribute-type="String" visibile="true" id="_1451567348238181">
+                <jpa:column name="ID_ISSFA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="numeroHc" attribute-type="java.math.BigInteger" visibile="true" id="_1451567348238182">
+                <jpa:column name="NUMERO_HC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="email" attribute-type="String" visibile="true" id="_1451567348238183">
+                <jpa:column name="EMAIL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="perCodigo" attribute-type="String" visibile="true" id="_1451567348238184">
+                <jpa:column name="PER_CODIGO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="nomId" attribute-type="java.math.BigInteger" visibile="true" id="_1451567348238185">
+                <jpa:column name="NOM_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="usuExt" attribute-type="java.math.BigInteger" visibile="true" id="_1451567348238186">
+                <jpa:column name="USU_EXT" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="cargoEnPersonal" attribute-type="String" visibile="true" id="_1451567348238187">
+                <jpa:column name="CARGO_EN_PERSONAL" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="medicoEspecialista" attribute-type="String" visibile="true" id="_1451567348238188">
+                <jpa:column name="MEDICO_ESPECIALISTA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="actualizarDatos" attribute-type="java.math.BigDecimal" visibile="true" id="_1451567348238189">
+                <jpa:column name="ACTUALIZAR_DATOS" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:named-query name="VUsuariosClasif.findAll">
+            <jpa:query>SELECT v FROM VUsuariosClasif v</jpa:query>
+        </jpa:named-query>
+        <jpa:table name="V_USUARIOS_CLASIF"/>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="VTurnosReservados" visibile="true" minimized="false" id="_1451567348289190">
+        <jpa:attributes>
+            <jpa:id name="numeroId" attribute-type="String" visibile="true" id="_1451567348289191">
+                <jpa:column name="NUMERO_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="NUMERO_ID"/>
+            </jpa:id>
+            <jpa:basic name="pcnNumeroHc" optional="true" attribute-type="String" visibile="true" id="_1451567348289192">
+                <jpa:column name="PCN_NUMERO_HC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="servicio" optional="true" attribute-type="String" visibile="true" id="_1451567348289193">
+                <jpa:column name="SERVICIO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="consultorio" optional="true" attribute-type="String" visibile="true" id="_1451567348289194">
+                <jpa:column name="CONSULTORIO" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="fecha" optional="true" attribute-type="String" visibile="true" id="_1451567348289195">
+                <jpa:column name="FECHA" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:table name="V_TURNOS_RESERVADOS"/>
+    </jpa:entity>
+    <jpa:diagram id="_14515673471812">
+        <plane elementRef="_14515673471801" id="_14515673471853_p">
+            <shape elementRef="_14515673472724" id="_14515673472724_gui">
+                <Bounds x="1553.0" y="30.0" width="152.0" height="153.0"/>
+            </shape>
+            <shape elementRef="_14515673473459" id="_14515673473459_gui">
+                <Bounds x="1831.0" y="30.0" width="161.0" height="174.0"/>
+            </shape>
+            <shape elementRef="_145156734745515" id="_145156734745515_gui">
+                <Bounds x="378.0" y="30.0" width="158.0" height="96.0"/>
+            </shape>
+            <shape elementRef="_145156734750518" id="_145156734750518_gui">
+                <Bounds x="2118.0" y="30.0" width="195.0" height="138.0"/>
+            </shape>
+            <shape elementRef="_145156734755223" id="_145156734755223_gui">
+                <Bounds x="3450.0" y="30.0" width="151.0" height="222.0"/>
+            </shape>
+            <shape elementRef="_145156734760032" id="_145156734760032_gui">
+                <Bounds x="1770.0" y="1207.0" width="193.0" height="222.0"/>
+            </shape>
+            <shape elementRef="_145156734764541" id="_145156734764541_gui">
+                <Bounds x="2758.0" y="30.0" width="226.0" height="222.0"/>
+            </shape>
+            <shape elementRef="_145156734769150" id="_145156734769150_gui">
+                <Bounds x="3727.0" y="30.0" width="189.0" height="285.0"/>
+            </shape>
+            <shape elementRef="_145156734773862" id="_145156734773862_gui">
+                <Bounds x="4042.0" y="30.0" width="195.0" height="117.0"/>
+            </shape>
+            <shape elementRef="_145156734778166" id="_145156734778166_gui">
+                <Bounds x="662.0" y="30.0" width="177.0" height="180.0"/>
+            </shape>
+            <shape elementRef="_145156734782673" id="_145156734782673_gui">
+                <Bounds x="4363.0" y="30.0" width="220.0" height="61.0"/>
+            </shape>
+            <shape elementRef="_145156734786975" id="_145156734786975_gui">
+                <Bounds x="5334.0" y="30.0" width="143.0" height="117.0"/>
+            </shape>
+            <shape elementRef="_145156734791479" id="_145156734791479_gui">
+                <Bounds x="1263.0" y="30.0" width="164.0" height="432.0"/>
+            </shape>
+            <shape elementRef="_145156734796098" id="_145156734796098_gui">
+                <Bounds x="5014.0" y="30.0" width="194.0" height="180.0"/>
+            </shape>
+            <shape elementRef="_1451567348004105" id="_1451567348004105_gui">
+                <Bounds x="30.0" y="30.0" width="222.0" height="138.0"/>
+            </shape>
+            <shape elementRef="_1451567348048110" id="_1451567348048110_gui">
+                <Bounds x="5924.0" y="30.0" width="225.0" height="258.0"/>
+            </shape>
+            <shape elementRef="_1451567348103120" id="_1451567348103120_gui">
+                <Bounds x="5603.0" y="30.0" width="195.0" height="684.0"/>
+            </shape>
+            <shape elementRef="_1451567348147151" id="_1451567348147151_gui">
+                <Bounds x="4709.0" y="30.0" width="179.0" height="201.0"/>
+            </shape>
+            <shape elementRef="_1451567348191159" id="_1451567348191159_gui">
+                <Bounds x="965.0" y="30.0" width="172.0" height="348.0"/>
+            </shape>
+            <shape elementRef="_1451567348238174" id="_1451567348238174_gui">
+                <Bounds x="6275.0" y="30.0" width="189.0" height="369.0"/>
+            </shape>
+            <shape elementRef="_1451567348289190" id="_1451567348289190_gui">
+                <Bounds x="3110.0" y="30.0" width="214.0" height="159.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>

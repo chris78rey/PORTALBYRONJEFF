@@ -7,7 +7,7 @@
                 template="/WEB-INF/template.xhtml">
 
     <ui:define name="content">
-        <h:form>
+        <h:form id="formDP1">
             <div class="EmptyBox10"/>
             <div class="Container100 BorBotLeaden ui-fluid">  
                 <div class="ContainerIndent">                      
@@ -51,20 +51,39 @@
                                     <p:outputLabel for="provincia" class="Fs12" value="Provincia:" /> 
                                 </div> 
                                 <div class="ui-panelgrid-cell ui-grid-col-4">
-                                    <p:selectOneMenu id="provincia"   value="#{actualizaDatosController.segUsuario.cntPrvCodigo}"   styleClass="Wid50"  >
-                                        <f:selectItem itemLabel="Provincia" noSelectionOption="true" />
-                                        <f:selectItems value="#{actualizaDatosController.listProvincias}" var="item"  itemValue="#{item.codigo}" itemLabel="#{item.provincia}"  />
-                                        <f:ajax event="change"  render="@form" listener="#{actualizaDatosController.listen1(event)}"/>
+                                    <p:selectOneMenu id="provincia"   value="#{actualizaDatosController.proId}"   styleClass="Wid50"  >
+                                        <f:selectItem itemLabel="Provincia"  itemValue="-1" />
+                                        <f:selectItems value="#{actualizaDatosController.listProvincias}" 
+                                                       var="item"  
+                                                       itemValue="#{item.codigo}" 
+                                                       itemLabel="#{item.provincia}"  />
+                                        <f:ajax 
+                                            event="change" 
+                                            execute=":formDP1:provincia :formDP1:canton :formDP1:parroquia"  
+                                            render=":formDP1:provincia :formDP1:canton :formDP1:parroquia"  
+                                            listener="#{actualizaDatosController.listen1(event)}"/>
                                     </p:selectOneMenu>
                                 </div>  
                                 <div class="ui-panelgrid-cell ui-grid-col-2">
                                     <p:outputLabel for="canton" value="Cantón:" /> 
                                 </div>  
                                 <div class="ui-panelgrid-cell ui-grid-col-4">
-                                    <p:selectOneMenu id="canton"  value="#{actualizaDatosController.segUsuario.cntCodigo}"   styleClass="Wid50"  >
-                                        <f:selectItem itemLabel="Cantón" noSelectionOption="true" />
-                                        <f:selectItems value="#{actualizaDatosController.cantoneses}" var="item"  itemValue="#{item.cantonesPK.codigo}" itemLabel="#{item.canton}"  />
-                                        <f:ajax event="change"  render="@form" listener="#{actualizaDatosController.listen2(event)}"/>
+                                    <p:selectOneMenu id="canton"  
+                                                     value="#{actualizaDatosController.canId}"   
+                                                     styleClass="Wid50"  >
+                                        <f:selectItem 
+                                            itemLabel="Cantón"                                       
+                                            itemValue="-1"/>
+                                        <f:selectItems 
+                                            value="#{actualizaDatosController.cantoneses}" 
+                                            var="item"  
+                                            itemValue="#{item.cantonesPK.codigo}" 
+                                            itemLabel="#{item.canton}"  />
+                                        <f:ajax event="change" 
+                                                execute=":formDP1:provincia :formDP1:canton :formDP1:parroquia"   
+                                                render=":formDP1:provincia :formDP1:canton :formDP1:parroquia"  
+                                                listener="#{actualizaDatosController.listen2(event)}"/>
+
                                     </p:selectOneMenu>
                                     <p:message for="canton" />
                                 </div>  
@@ -76,10 +95,19 @@
                                     <p:outputLabel for="parroquia" value="Parroquia:" />
                                 </div> 
                                 <div class="ui-panelgrid-cell ui-grid-col-4">
-                                    <p:selectOneMenu id="parroquia"  value="#{actualizaDatosController.segUsuario.codigo}"   styleClass="Wid50"  >
-                                        <f:selectItem itemLabel="Parroquias" noSelectionOption="true" />
-                                        <f:selectItems value="#{actualizaDatosController.parroquiases}" var="item"  itemValue="#{item.parroquiasPK.codigo}" itemLabel="#{item.parroquia}"  />
-                                        <f:ajax event="change"  render="@form" listener="#{actualizaDatosController.listen3(event)}"/>
+                                    <p:selectOneMenu id="parroquia"  
+                                                     value="#{actualizaDatosController.parrId}"   
+                                                     styleClass="Wid50"  >
+                                        <f:selectItem itemLabel="Parroquias" itemValue="-1" />
+                                        <f:selectItems value="#{actualizaDatosController.parroquiases}" 
+                                                       var="item"  itemValue="#{item.parroquiasPK.codigo}" 
+                                                       itemLabel="#{item.parroquia}"  />
+                                        <f:ajax 
+                                            event="change" 
+                                            execute=":formDP1:provincia :formDP1:canton :formDP1:parroquia"  
+                                            render=":formDP1:provincia :formDP1:canton :formDP1:parroquia"  
+                                            listener="#{actualizaDatosController.listen3(event)}"
+                                            />
                                     </p:selectOneMenu>
                                 </div>  
                                 <div class="ui-panelgrid-cell ui-grid-col-2">
