@@ -6,7 +6,6 @@ import ec.mil.he1.pom_01_domain.VUsuariosClasif;
 import ec.mil.he1.pom_03_ejb.autogenerados.jsf.util.JsfUtil;
 import ec.mil.he1.pom_03_ejb.autogenerados.jsf.util.JsfUtil.PersistAction;
 import ec.mil.he1.pom_03_ejb.autogenerados.sessionbean.VCambioClaveNuevPortalFacade;
-import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,34 +17,31 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import static javax.faces.context.FacesContext.getCurrentInstance;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 
 @Named("vCambioClaveNuevPortalController")
 @SessionScoped
 public class VCambioClaveNuevPortalController implements Serializable {
 
-    @EJB
-    private ListasComunes listasComunes;
+    private static final long serialVersionUID = 266615467079477041L;
 
     @EJB
     private ec.mil.he1.pom_03_ejb.autogenerados.sessionbean.VCambioClaveNuevPortalFacade ejbFacade;
     private List<VCambioClaveNuevPortal> items = null;
-    private List<VCambioClaveNuevPortal> itemsCclave = null;
-    private VCambioClaveNuevPortal selected;
+
+//    private VCambioClaveNuevPortal selected;
+
+    private String claveActual = "";
     private VUsuariosClasif vUsuariosClasif;
     private SegUsuario segUsuario;
-
-    public VCambioClaveNuevPortalController() {
-    }
-
-    public List<VCambioClaveNuevPortal> findVistaCambioClave(String cedula) {
-        return listasComunes.findVistaCambioClave(cedula);
-    }
+    private VCambioClaveNuevPortal vcambioclave = new VCambioClaveNuevPortal();
 
     @PostConstruct
     private void init() {
@@ -55,16 +51,20 @@ public class VCambioClaveNuevPortalController implements Serializable {
         vUsuariosClasif = (VUsuariosClasif) session.getAttribute("vUsuariosClasif");
         segUsuario = (SegUsuario) session.getAttribute("segUsuario");
 
-        itemsCclave = findVistaCambioClave(segUsuario.getCedulaLogin());
+        /*con el usuario*/
+        setVcambioclave(ejbFacade.find(segUsuario.getId()));
 
+    }
+
+    public VCambioClaveNuevPortalController() {
     }
 
     public VCambioClaveNuevPortal getSelected() {
-        return selected;
+        return vcambioclave;
     }
 
     public void setSelected(VCambioClaveNuevPortal selected) {
-        this.selected = selected;
+        this.vcambioclave = selected;
     }
 
     protected void setEmbeddableKeys() {
@@ -78,26 +78,28 @@ public class VCambioClaveNuevPortalController implements Serializable {
     }
 
     public VCambioClaveNuevPortal prepareCreate() {
-        selected = new VCambioClaveNuevPortal();
+        vcambioclave = new VCambioClaveNuevPortal();
         initializeEmbeddableKey();
-        return selected;
+        return vcambioclave;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/BundleCclave").getString("VCambioClaveNuevPortalCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundleccccc0001").getString("VCambioClaveNuevPortalCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/BundleCclave").getString("VCambioClaveNuevPortalUpdated"));
+
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundleccccc0001").getString("VCambioClaveNuevPortalUpdated"));
+
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/BundleCclave").getString("VCambioClaveNuevPortalDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundleccccc0001").getString("VCambioClaveNuevPortalDeleted"));
         if (!JsfUtil.isValidationFailed()) {
-            selected = null; // Remove selection
+            vcambioclave = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
@@ -110,13 +112,13 @@ public class VCambioClaveNuevPortalController implements Serializable {
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
-        if (selected != null) {
+        if (vcambioclave != null) {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
+                    getFacade().edit(vcambioclave);
                 } else {
-                    getFacade().remove(selected);
+                    getFacade().remove(vcambioclave);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -128,11 +130,11 @@ public class VCambioClaveNuevPortalController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleCclave").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundleccccc0001").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleCclave").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundleccccc0001").getString("PersistenceErrorOccured"));
             }
         }
     }
@@ -150,17 +152,49 @@ public class VCambioClaveNuevPortalController implements Serializable {
     }
 
     /**
-     * @return the itemsCclave
+     * @return the claveActual
      */
-    public List<VCambioClaveNuevPortal> getItemsCclave() {
-        return itemsCclave;
+    public String getClaveActual() {
+        return claveActual;
     }
 
     /**
-     * @param itemsCclave the itemsCclave to set
+     * @param claveActual the claveActual to set
      */
-    public void setItemsCclave(List<VCambioClaveNuevPortal> itemsCclave) {
-        this.itemsCclave = itemsCclave;
+    public void setClaveActual(String claveActual) {
+        this.claveActual = claveActual;
+    }
+
+    /**
+     * @return the vcambioclave
+     */
+    public VCambioClaveNuevPortal getVcambioclave() {
+        return vcambioclave;
+    }
+
+    /**
+     * @param vcambioclave the vcambioclave to set
+     */
+    public void setVcambioclave(VCambioClaveNuevPortal vcambioclave) {
+        this.vcambioclave = vcambioclave;
+    }
+
+    public void buttonAction(ActionEvent actionEvent) {
+
+        if (!claveActual.equalsIgnoreCase(vcambioclave.getUsuClave())) {
+            addMessage("´La clave actual no coincide");
+        } else if (!vcambioclave.getClaveNueva().equalsIgnoreCase(vcambioclave.getClaveNueva2())) {
+            addMessage("Las claves nuevas no coinciden");
+        } else if (vcambioclave.getClaveNueva().length() < 5) {
+            addMessage("Las clave nueva debe tener por lo menos 5 caracteres");
+        } else {
+            update();
+        }
+    }
+
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     @FacesConverter(forClass = VCambioClaveNuevPortal.class)
@@ -195,7 +229,7 @@ public class VCambioClaveNuevPortalController implements Serializable {
             }
             if (object instanceof VCambioClaveNuevPortal) {
                 VCambioClaveNuevPortal o = (VCambioClaveNuevPortal) object;
-                return getStringKey(o.getID());
+                return getStringKey(o.getId());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), VCambioClaveNuevPortal.class.getName()});
                 return null;

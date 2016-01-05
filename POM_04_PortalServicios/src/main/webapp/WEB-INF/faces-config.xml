@@ -38,5 +38,13 @@
             <base-name>/BundleCclave</base-name>
             <var>bundleCclave</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundlecclaves</base-name>
+            <var>bundlecclaves</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundleccccc0001</base-name>
+            <var>bundleccccc0001</var>
+        </resource-bundle>
     </application>
 </faces-config>

@@ -8,19 +8,27 @@
 
     <ui:composition>
 
-        <p:dialog id="VCambioClaveNuevPortalEditDlg" widgetVar="VCambioClaveNuevPortalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCclave.EditVCambioClaveNuevPortalTitle}">
+        <p:dialog id="VCambioClaveNuevPortalEditDlg" widgetVar="VCambioClaveNuevPortalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleccccc0001.EditVCambioClaveNuevPortalTitle}">
             <h:form id="VCambioClaveNuevPortalEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{vCambioClaveNuevPortalController.selected != null}">
-                        <p:outputLabel value="#{bundleCclave.EditVCambioClaveNuevPortalLabel_ID}" for="ID" />
-                        <p:inputText id="ID" value="#{vCambioClaveNuevPortalController.selected.ID}" title="#{bundleCclave.EditVCambioClaveNuevPortalTitle_ID}" required="true" requiredMessage="#{bundleCclave.EditVCambioClaveNuevPortalRequiredMessage_ID}"/>
-                        <p:outputLabel value="#{bundleCclave.EditVCambioClaveNuevPortalLabel_cedulaLogin}" for="cedulaLogin" />
-                        <p:inputText id="cedulaLogin" value="#{vCambioClaveNuevPortalController.selected.cedulaLogin}" title="#{bundleCclave.EditVCambioClaveNuevPortalTitle_cedulaLogin}" />
-                        <p:outputLabel value="#{bundleCclave.EditVCambioClaveNuevPortalLabel_usuClave}" for="usuClave" />
-                        <p:inputText id="usuClave" value="#{vCambioClaveNuevPortalController.selected.usuClave}" title="#{bundleCclave.EditVCambioClaveNuevPortalTitle_usuClave}" />
+                        <p:outputLabel value="#{bundleccccc0001.EditVCambioClaveNuevPortalLabel_cedulaLogin}" for="cedulaLogin" />
+                        <p:outputLabel id="cedulaLogin" value="#{vCambioClaveNuevPortalController.selected.cedulaLogin}" title="#{bundleccccc0001.EditVCambioClaveNuevPortalTitle_cedulaLogin}" />
+
+                        <p:outputLabel value="Clave Actual:" for="ca" />
+                        <p:inputText id="ca" value="#{vCambioClaveNuevPortalController.claveAnterior}"  />
+
+
+                        
+                        <p:outputLabel value="#{bundleccccc0001.EditVCambioClaveNuevPortalLabel_claveNueva}" for="claveNueva" />
+                        <p:inputText id="claveNueva" value="#{vCambioClaveNuevPortalController.selected.claveNueva}" title="#{bundleccccc0001.EditVCambioClaveNuevPortalTitle_claveNueva}" />
+                        <p:outputLabel value="#{bundleccccc0001.EditVCambioClaveNuevPortalLabel_claveNueva2}" for="claveNueva2" />
+                        <p:inputText id="claveNueva2" value="#{vCambioClaveNuevPortalController.selected.claveNueva2}" title="#{bundleccccc0001.EditVCambioClaveNuevPortalTitle_claveNueva2}" />
+
+
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{vCambioClaveNuevPortalController.update}" value="#{bundleCclave.Save}" update="display,:VCambioClaveNuevPortalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'VCambioClaveNuevPortalEditDialog');"/>
-                    <p:commandButton value="#{bundleCclave.Cancel}" onclick="VCambioClaveNuevPortalEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{vCambioClaveNuevPortalController.update}" value="#{bundleccccc0001.Save}" update="display,:VCambioClaveNuevPortalListForm:datalist" oncomplete="handleSubmit(args, 'VCambioClaveNuevPortalEditDialog');"/>
+                    <p:commandButton value="#{bundleccccc0001.Cancel}" onclick="VCambioClaveNuevPortalEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

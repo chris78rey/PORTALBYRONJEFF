@@ -10,43 +10,75 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundleCclave.ListVCambioClaveNuevPortalTitle}"></h:outputText>
+            <h:outputText value="#{bundleccccc0001.ListVCambioClaveNuevPortalTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="content">
-         
-            <h:form id="VCambioClaveNuevPortalListForm">
-                <p:panel header="#{bundleCclave.ListVCambioClaveNuevPortalTitle}">
-                    <p:dataTable id="datalist" value="#{vCambioClaveNuevPortalController.itemsCclave}" var="item"
-                                 selectionMode="single" selection="#{vCambioClaveNuevPortalController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.ID}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+            <center>
 
-                        <p:ajax event="rowSelect"   update="createButton"/>
-                        <p:ajax event="rowUnselect" update="createButton"/>
+                <h:form id="VCambioClaveNuevPortalListForm">
+                    <p:growl id="growl" showDetail="true" sticky="true" /> 
+                    <div class="EmptyBox10"/>
+                    <div class="Container33 BorBotLeaden ui-fluid">  
+                        <div class="ContainerIndent">           
+                            <p:panel header="Cambio de clave">
+                                <div class="EmptyBox10"/>
+                                <div class="ContainerIndent">
 
-                   
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundleCclave.ListVCambioClaveNuevPortalTitle_cedulaLogin}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cedulaLogin}"/>
-                        </p:column>
-             
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundleCclave.Create}" actionListener="#{vCambioClaveNuevPortalController.prepareCreate}" update=":VCambioClaveNuevPortalCreateForm" oncomplete="PF('VCambioClaveNuevPortalCreateDialog').show()"/>
-                           
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
 
-            <ui:include src="Create.xhtml"/>
+                                    <div class="ui-grid-row">  
+                                        <div class="ui-panelgrid-cell ui-grid-col-2">
+                                            <p:outputLabel value="Clave actual:"/>
+                                        </div> 
+                                        <div class="ui-panelgrid-cell ui-grid-col-4">
+                                            <p:password value="#{vCambioClaveNuevPortalController.claveActual}"/>
+                                        </div>  
+
+                                    </div> 
+                                    <div class="EmptyBox10"></div>
+
+
+                                    <div class="ui-grid-row">  
+                                        <div class="ui-panelgrid-cell ui-grid-col-2">
+                                            <p:outputLabel value="Clave nueva:"/>
+                                        </div> 
+                                        <div class="ui-panelgrid-cell ui-grid-col-4">
+                                            <p:password value="#{vCambioClaveNuevPortalController.vcambioclave.claveNueva}"/>
+                                        </div>  
+                                    </div>  
+                                    <div class="EmptyBox10"></div>
+
+                                    <div class="ui-grid-row">  
+                                        <div class="ui-panelgrid-cell ui-grid-col-2">
+                                            <p:outputLabel value="Repita la clave nueva:"/>
+                                        </div> 
+                                        <div class="ui-panelgrid-cell ui-grid-col-4">
+                                            <p:password value="#{vCambioClaveNuevPortalController.vcambioclave.claveNueva2}"/>
+                                        </div>  
+                                    </div>  
+                                    <div class="EmptyBox10"></div>
+                                    <div class="EmptyBox10"></div>
+
+                                    <p:commandButton value="Cambiar Clave" 
+                                                     id="ajax" 
+                                                     update="@form" 
+                                                     actionListener="#{vCambioClaveNuevPortalController.buttonAction}" 
+                                                     styleClass="ui-priority-primary" />
+
+                                    <div class="EmptyBox20"></div>
+                                </div>
+                            </p:panel>
+                        </div>  
+                    </div>  
+                </h:form>  
+            </center>
+            <p:separator > 
+            </p:separator > 
+
 
         </ui:define>
     </ui:composition>
 
 </html>
+
+

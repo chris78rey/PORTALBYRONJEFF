@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings status="GENERATED" jaxb-support="false" id="_14519481718351" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <jpa:entity jaxb-root-element="false" static-metamodel="false" abstract="false" class="VCambioClaveNuevPortal" visibile="true" minimized="false" id="_14519481718384">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.math.BigDecimal" visibile="true" id="_14519481718475">
+                <jpa:column name="ID" unique="false" nullable="false" insertable="true" updatable="true" table="V_CAMBIO_CLAVE_NUEV_PORTAL" precision="38" scale="0"/>
+            </jpa:id>
+            <jpa:basic name="cedulaLogin" optional="true" attribute-type="String" visibile="true" id="_14519481718486">
+                <jpa:column name="CEDULA_LOGIN" unique="false" nullable="true" insertable="true" updatable="true" table="V_CAMBIO_CLAVE_NUEV_PORTAL" length="40"/>
+            </jpa:basic>
+            <jpa:basic name="usuClave" optional="true" attribute-type="String" visibile="true" id="_14519481718487">
+                <jpa:column name="USU_CLAVE" unique="false" nullable="true" insertable="true" updatable="true" table="V_CAMBIO_CLAVE_NUEV_PORTAL" length="4000"/>
+            </jpa:basic>
+            <jpa:basic name="claveNueva" optional="true" attribute-type="String" visibile="true" id="_14519481718488">
+                <jpa:column name="CLAVE_NUEVA" unique="false" nullable="true" insertable="true" updatable="true" table="V_CAMBIO_CLAVE_NUEV_PORTAL" length="24"/>
+            </jpa:basic>
+            <jpa:basic name="claveNueva2" optional="true" attribute-type="String" visibile="true" id="_14519481718489">
+                <jpa:column name="CLAVE_NUEVA2" unique="false" nullable="true" insertable="true" updatable="true" table="V_CAMBIO_CLAVE_NUEV_PORTAL" length="24"/>
+            </jpa:basic>
+        </jpa:attributes>
+        <jpa:table name="V_CAMBIO_CLAVE_NUEV_PORTAL"/>
+    </jpa:entity>
+    <jpa:diagram id="_14519481718362">
+        <plane elementRef="_14519481718351" id="_14519481718373_p"/>
+    </jpa:diagram>
+</jpa:entity-mappings>

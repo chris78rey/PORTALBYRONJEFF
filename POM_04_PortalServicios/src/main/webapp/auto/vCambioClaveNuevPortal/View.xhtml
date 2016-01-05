@@ -8,18 +8,22 @@
 
     <ui:composition>
 
-        <p:dialog id="VCambioClaveNuevPortalViewDlg" widgetVar="VCambioClaveNuevPortalViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCclave.ViewVCambioClaveNuevPortalTitle}">
+        <p:dialog id="VCambioClaveNuevPortalViewDlg" widgetVar="VCambioClaveNuevPortalViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleccccc0001.ViewVCambioClaveNuevPortalTitle}">
             <h:form id="VCambioClaveNuevPortalViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{vCambioClaveNuevPortalController.selected != null}">
-                        <h:outputText value="#{bundleCclave.ViewVCambioClaveNuevPortalLabel_ID}"/>
-                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.ID}" title="#{bundleCclave.ViewVCambioClaveNuevPortalTitle_ID}"/>
-                        <h:outputText value="#{bundleCclave.ViewVCambioClaveNuevPortalLabel_cedulaLogin}"/>
-                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.cedulaLogin}" title="#{bundleCclave.ViewVCambioClaveNuevPortalTitle_cedulaLogin}"/>
-                        <h:outputText value="#{bundleCclave.ViewVCambioClaveNuevPortalLabel_usuClave}"/>
-                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.usuClave}" title="#{bundleCclave.ViewVCambioClaveNuevPortalTitle_usuClave}"/>
+                        <h:outputText value="#{bundleccccc0001.ViewVCambioClaveNuevPortalLabel_claveNueva}"/>
+                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.claveNueva}" title="#{bundleccccc0001.ViewVCambioClaveNuevPortalTitle_claveNueva}"/>
+                        <h:outputText value="#{bundleccccc0001.ViewVCambioClaveNuevPortalLabel_claveNueva2}"/>
+                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.claveNueva2}" title="#{bundleccccc0001.ViewVCambioClaveNuevPortalTitle_claveNueva2}"/>
+                        <h:outputText value="#{bundleccccc0001.ViewVCambioClaveNuevPortalLabel_cedulaLogin}"/>
+                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.cedulaLogin}" title="#{bundleccccc0001.ViewVCambioClaveNuevPortalTitle_cedulaLogin}"/>
+                        <h:outputText value="#{bundleccccc0001.ViewVCambioClaveNuevPortalLabel_id}"/>
+                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.id}" title="#{bundleccccc0001.ViewVCambioClaveNuevPortalTitle_id}"/>
+                        <h:outputText value="#{bundleccccc0001.ViewVCambioClaveNuevPortalLabel_usuClave}"/>
+                        <h:outputText value="#{vCambioClaveNuevPortalController.selected.usuClave}" title="#{bundleccccc0001.ViewVCambioClaveNuevPortalTitle_usuClave}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundleCclave.Close}" onclick="VCambioClaveNuevPortalViewDialog.hide()"/>
+                    <p:commandButton value="#{bundleccccc0001.Close}" onclick="VCambioClaveNuevPortalViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
