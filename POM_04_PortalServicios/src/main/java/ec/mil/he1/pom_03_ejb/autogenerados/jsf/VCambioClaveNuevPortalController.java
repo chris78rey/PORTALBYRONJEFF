@@ -6,8 +6,10 @@ import ec.mil.he1.pom_01_domain.VUsuariosClasif;
 import ec.mil.he1.pom_03_ejb.autogenerados.jsf.util.JsfUtil;
 import ec.mil.he1.pom_03_ejb.autogenerados.jsf.util.JsfUtil.PersistAction;
 import ec.mil.he1.pom_03_ejb.autogenerados.sessionbean.VCambioClaveNuevPortalFacade;
+import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -30,18 +32,49 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class VCambioClaveNuevPortalController implements Serializable {
 
-    private static final long serialVersionUID = 266615467079477041L;
+    @EJB
+    private ListasComunes listasComunes;
+    private List<VCambioClaveNuevPortal> list = new ArrayList<>();
+    private String claveActual;
 
+    public List<VCambioClaveNuevPortal> findVistaCambioClave(String cedula) {
+        return listasComunes.findVistaCambioClave(cedula);
+    }
+
+    
+    
+    public void buttonAction(ActionEvent actionEvent) {
+
+        if (!claveActual.equalsIgnoreCase(selected.getUsuClave())) {
+            addMessage("´La clave actual no coincide");
+        } else if (!selected.getClaveNueva().equalsIgnoreCase(selected.getClaveNueva2())) {
+            addMessage("Las claves nuevas no coinciden");
+        } else if (selected.getClaveNueva().length() < 5) {
+            addMessage("Las clave nueva debe tener por lo menos 5 caracteres");
+        } else {
+            update();
+        }
+    }
+
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    
     @EJB
     private ec.mil.he1.pom_03_ejb.autogenerados.sessionbean.VCambioClaveNuevPortalFacade ejbFacade;
     private List<VCambioClaveNuevPortal> items = null;
-
-//    private VCambioClaveNuevPortal selected;
-
-    private String claveActual = "";
+    private VCambioClaveNuevPortal selected;
     private VUsuariosClasif vUsuariosClasif;
     private SegUsuario segUsuario;
-    private VCambioClaveNuevPortal vcambioclave = new VCambioClaveNuevPortal();
+
+    public VCambioClaveNuevPortalController() {
+    }
+
+    public VCambioClaveNuevPortal getSelected() {
+        return selected;
+    }
 
     @PostConstruct
     private void init() {
@@ -50,21 +83,12 @@ public class VCambioClaveNuevPortalController implements Serializable {
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         vUsuariosClasif = (VUsuariosClasif) session.getAttribute("vUsuariosClasif");
         segUsuario = (SegUsuario) session.getAttribute("segUsuario");
+        list = findVistaCambioClave(segUsuario.getCedulaLogin());
 
-        /*con el usuario*/
-        setVcambioclave(ejbFacade.find(segUsuario.getId()));
-
-    }
-
-    public VCambioClaveNuevPortalController() {
-    }
-
-    public VCambioClaveNuevPortal getSelected() {
-        return vcambioclave;
     }
 
     public void setSelected(VCambioClaveNuevPortal selected) {
-        this.vcambioclave = selected;
+        this.selected = selected;
     }
 
     protected void setEmbeddableKeys() {
@@ -78,28 +102,26 @@ public class VCambioClaveNuevPortalController implements Serializable {
     }
 
     public VCambioClaveNuevPortal prepareCreate() {
-        vcambioclave = new VCambioClaveNuevPortal();
+        selected = new VCambioClaveNuevPortal();
         initializeEmbeddableKey();
-        return vcambioclave;
+        return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundleccccc0001").getString("VCambioClaveNuevPortalCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle0000001").getString("VCambioClaveNuevPortalCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundleccccc0001").getString("VCambioClaveNuevPortalUpdated"));
-
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle0000001").getString("VCambioClaveNuevPortalUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundleccccc0001").getString("VCambioClaveNuevPortalDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle0000001").getString("VCambioClaveNuevPortalDeleted"));
         if (!JsfUtil.isValidationFailed()) {
-            vcambioclave = null; // Remove selection
+            selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
@@ -112,13 +134,13 @@ public class VCambioClaveNuevPortalController implements Serializable {
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
-        if (vcambioclave != null) {
+        if (selected != null) {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(vcambioclave);
+                    getFacade().edit(selected);
                 } else {
-                    getFacade().remove(vcambioclave);
+                    getFacade().remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -130,11 +152,11 @@ public class VCambioClaveNuevPortalController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundleccccc0001").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle0000001").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundleccccc0001").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle0000001").getString("PersistenceErrorOccured"));
             }
         }
     }
@@ -152,6 +174,13 @@ public class VCambioClaveNuevPortalController implements Serializable {
     }
 
     /**
+     * @return the list
+     */
+    public List<VCambioClaveNuevPortal> getList() {
+        return list;
+    }
+
+    /**
      * @return the claveActual
      */
     public String getClaveActual() {
@@ -163,38 +192,6 @@ public class VCambioClaveNuevPortalController implements Serializable {
      */
     public void setClaveActual(String claveActual) {
         this.claveActual = claveActual;
-    }
-
-    /**
-     * @return the vcambioclave
-     */
-    public VCambioClaveNuevPortal getVcambioclave() {
-        return vcambioclave;
-    }
-
-    /**
-     * @param vcambioclave the vcambioclave to set
-     */
-    public void setVcambioclave(VCambioClaveNuevPortal vcambioclave) {
-        this.vcambioclave = vcambioclave;
-    }
-
-    public void buttonAction(ActionEvent actionEvent) {
-
-        if (!claveActual.equalsIgnoreCase(vcambioclave.getUsuClave())) {
-            addMessage("´La clave actual no coincide");
-        } else if (!vcambioclave.getClaveNueva().equalsIgnoreCase(vcambioclave.getClaveNueva2())) {
-            addMessage("Las claves nuevas no coinciden");
-        } else if (vcambioclave.getClaveNueva().length() < 5) {
-            addMessage("Las clave nueva debe tener por lo menos 5 caracteres");
-        } else {
-            update();
-        }
-    }
-
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     @FacesConverter(forClass = VCambioClaveNuevPortal.class)
