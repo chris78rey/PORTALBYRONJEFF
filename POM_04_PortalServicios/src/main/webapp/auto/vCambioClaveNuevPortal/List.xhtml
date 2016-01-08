@@ -9,11 +9,12 @@
     <ui:composition template="/WEB-INF/template.xhtml">
 
         <ui:define name="content">
+            <p:growl id="growl" showDetail="false" sticky="false" /> 
 
             <h:form id="VCambioClaveNuevPortalListForm">
                 <p:panel header="#{bundle0000001.ListVCambioClaveNuevPortalTitle}">
                     <div class="Container80 BorBotLeaden ui-fluid MaxWid500 Fnone MarAuto TexAlCenter PaddingTopPercent10">
-                        
+
                         <p:dataTable id="datalist" value="#{vCambioClaveNuevPortalController.list}" var="item"
                                      selectionMode="single" selection="#{vCambioClaveNuevPortalController.selected}"
                                      paginator="true"
@@ -22,7 +23,7 @@
                                      rowsPerPageTemplate="10,20,30,40,50"
                                      >
 
-                            <p:ajax event="rowSelect"   update="editButton"/>
+                            <p:ajax event="rowSelect"   update="@form"/>
                             <p:ajax event="rowUnselect" update="editButton"/>
 
 
