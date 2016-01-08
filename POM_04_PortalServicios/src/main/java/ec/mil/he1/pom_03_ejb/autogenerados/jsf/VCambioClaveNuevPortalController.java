@@ -7,6 +7,7 @@ import ec.mil.he1.pom_03_ejb.autogenerados.jsf.util.JsfUtil;
 import ec.mil.he1.pom_03_ejb.autogenerados.jsf.util.JsfUtil.PersistAction;
 import ec.mil.he1.pom_03_ejb.autogenerados.sessionbean.VCambioClaveNuevPortalFacade;
 import ec.mil.he1.pom_03_ejb.stateless.procesos.ListasComunes;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import static javax.faces.context.FacesContext.getCurrentInstance;
 import javax.faces.convert.Converter;
@@ -32,6 +34,9 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class VCambioClaveNuevPortalController implements Serializable {
 
+    private static final long serialVersionUID = 1550668158162077840L;
+    private static final Logger LOG = Logger.getLogger(VCambioClaveNuevPortalController.class.getName());
+
     @EJB
     private ListasComunes listasComunes;
     private List<VCambioClaveNuevPortal> list = new ArrayList<>();
@@ -41,10 +46,9 @@ public class VCambioClaveNuevPortalController implements Serializable {
         return listasComunes.findVistaCambioClave(cedula);
     }
 
-    
-    
     public void buttonAction(ActionEvent actionEvent) {
-
+        String a;
+        String b;
         if (!claveActual.equalsIgnoreCase(selected.getUsuClave())) {
             addMessage("´La clave actual no coincide");
         } else if (!selected.getClaveNueva().equalsIgnoreCase(selected.getClaveNueva2())) {
@@ -52,7 +56,13 @@ public class VCambioClaveNuevPortalController implements Serializable {
         } else if (selected.getClaveNueva().length() < 5) {
             addMessage("Las clave nueva debe tener por lo menos 5 caracteres");
         } else {
-            update();
+            try {
+                update();
+            } catch (Exception e) {
+
+                System.out.println("e = " + e.getLocalizedMessage());
+            }
+
         }
     }
 
@@ -60,8 +70,7 @@ public class VCambioClaveNuevPortalController implements Serializable {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-    
-    
+
     @EJB
     private ec.mil.he1.pom_03_ejb.autogenerados.sessionbean.VCambioClaveNuevPortalFacade ejbFacade;
     private List<VCambioClaveNuevPortal> items = null;
@@ -112,6 +121,14 @@ public class VCambioClaveNuevPortalController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+    }
+
+    public String regresaMenuPortal() throws IOException {
+
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.invalidateSession();
+        ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
+        return null;
     }
 
     public void update() {

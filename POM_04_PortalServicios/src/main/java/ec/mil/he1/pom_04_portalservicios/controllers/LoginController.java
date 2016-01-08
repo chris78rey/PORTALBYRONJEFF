@@ -87,7 +87,6 @@ public class LoginController implements Serializable {
 
     public void buttonActionPersonal(ActionEvent actionEvent) throws SQLException {
         String Login = loginSessionBean.Login(username, password, "2");
-        password = "";
 
         switch (Login) {
             case "1":
@@ -100,12 +99,16 @@ public class LoginController implements Serializable {
                 session.setAttribute("vUsuariosClasif", getvUsuariosClasif());
                 session.setAttribute("segUsuario", getSegUsuario());
                 BigDecimal bd = getvUsuariosClasif().getActualizarDatos();
-                if (bd.equals(new BigDecimal("1"))) {
+                //si el usuario esta registrado bien pero tiene 
+                //la misma cadena en la clave se debe redireccionar
+                if (username.equalsIgnoreCase(password)) {
+                    paginaSiguiente = "/auto/vCambioClaveNuevPortal/List";
+                } else if (bd.equals(new BigDecimal("1"))) {
                     paginaSiguiente = "actualizarDP.xhtml";
                 } else {
                     paginaSiguiente = "dashboard.xhtml";
                 }
-
+                password = "";
                 break;
             case "0":
                 mensaje = "Usuario o clave mal ingresados";

@@ -22,8 +22,8 @@
                                      rowsPerPageTemplate="10,20,30,40,50"
                                      >
 
-                            <p:ajax event="rowSelect"   update="editButton "/>
-                            <p:ajax event="rowUnselect" update="editButton "/>
+                            <p:ajax event="rowSelect"   update="editButton"/>
+                            <p:ajax event="rowUnselect" update="editButton"/>
 
 
                             <p:column>
@@ -34,7 +34,7 @@
                             </p:column>
 
                             <f:facet name="footer">
-                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle0000001.Edit}"  oncomplete="PF('VCambioClaveNuevPortalEditDialog').show()" disabled="#{empty vCambioClaveNuevPortalController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle0000001.Edit}" update="@form"  oncomplete="PF('VCambioClaveNuevPortalEditDialog').show()" disabled="#{empty vCambioClaveNuevPortalController.selected}"/>
 
                             </f:facet>
                         </p:dataTable>
@@ -45,34 +45,7 @@
 
 
 
-            <p:dialog id="VCambioClaveNuevPortalEditDlg" widgetVar="VCambioClaveNuevPortalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle0000001.EditVCambioClaveNuevPortalTitle}">
-                <h:form id="VCambioClaveNuevPortalEditForm">
-           
-                    <h:panelGroup id="display">
-                        <p:panelGrid columns="2" rendered="#{vCambioClaveNuevPortalController.selected != null}">
-
-                            <p:outputLabel value="Clave actual:"/>
-
-                            <p:password value="#{vCambioClaveNuevPortalController.claveActual}"/>
-
-                            <p:outputLabel value="Clave nueva:"/>
-
-                            <p:password value="#{vCambioClaveNuevPortalController.selected.claveNueva}"/>
-
-                            <p:outputLabel value="Repita la clave nueva:"/>
-
-                            <p:password value="#{vCambioClaveNuevPortalController.selected.claveNueva2}"/>
-
-                        </p:panelGrid>
-
-                        <p:commandButton value="Cambiar Clave" 
-                                         id="ajax" 
-                                         update="@form,:VCambioClaveNuevPortalListForm:datalist" 
-                                         actionListener="#{vCambioClaveNuevPortalController.buttonAction}" 
-                                         styleClass="ui-priority-primary" />
-                    </h:panelGroup>
-                </h:form>
-            </p:dialog>
+            <ui:include src="Edit.xhtml" />
 
 
         </ui:define>
