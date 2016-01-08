@@ -9,39 +9,47 @@
     <ui:composition template="/WEB-INF/template.xhtml">
 
         <ui:define name="content">
-            <p:growl id="growl" showDetail="false" sticky="false" /> 
+
 
             <h:form id="VCambioClaveNuevPortalListForm">
-                <p:panel header="#{bundle0000001.ListVCambioClaveNuevPortalTitle}">
-                    <div class="Container80 BorBotLeaden ui-fluid MaxWid500 Fnone MarAuto TexAlCenter PaddingTopPercent10">
 
-                        <p:dataTable id="datalist" value="#{vCambioClaveNuevPortalController.list}" var="item"
-                                     selectionMode="single" selection="#{vCambioClaveNuevPortalController.selected}"
-                                     paginator="true"
-                                     rowKey="#{item.id}"
-                                     rows="10"
-                                     rowsPerPageTemplate="10,20,30,40,50"
-                                     >
+                <div class="Container100 BorBotLeaden ui-fluid">  
+                    <div class="ContainerIndent">     
+                        <p:growl rendered="#{vCambioClaveNuevPortalController.dibujagrowl}" id="growl" showDetail="true" sticky="true" />
+                        <p:panel header="#{bundle0000001.ListVCambioClaveNuevPortalTitle}">
+                            <div class="Container80 BorBotLeaden ui-fluid MaxWid500 Fnone MarAuto TexAlCenter PaddingTopPercent10">
 
-                            <p:ajax event="rowSelect"   update="@form"/>
-                            <p:ajax event="rowUnselect" update="editButton"/>
+                                <p:dataTable id="datalist" value="#{vCambioClaveNuevPortalController.list}" var="item"
+                                             selectionMode="single" selection="#{vCambioClaveNuevPortalController.selected}"
+                                             paginator="true"
+                                             rowKey="#{item.id}"
+                                             rows="10"
+                                             rowsPerPageTemplate="10,20,30,40,50"
+                                             >
+
+                                    <p:ajax event="rowSelect"   update="@form"/>
+                                    <p:ajax event="rowUnselect" update="@form"/>
 
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle0000001.ListVCambioClaveNuevPortalTitle_cedulaLogin}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.cedulaLogin}"/>
-                            </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle0000001.ListVCambioClaveNuevPortalTitle_cedulaLogin}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.cedulaLogin}"/>
+                                    </p:column>
 
-                            <f:facet name="footer">
-                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle0000001.Edit}" update="@form"  oncomplete="PF('VCambioClaveNuevPortalEditDialog').show()" disabled="#{empty vCambioClaveNuevPortalController.selected}"/>
+                                    <f:facet name="footer">
+                                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle0000001.Edit}" update="@form"  oncomplete="PF('VCambioClaveNuevPortalEditDialog').show()" disabled="#{empty vCambioClaveNuevPortalController.selected}"/>
 
-                            </f:facet>
-                        </p:dataTable>
+                                    </f:facet>
+                                </p:dataTable>
+
+                            </div>
+
+                        </p:panel>
                     </div>
+                </div>
 
-                </p:panel>
             </h:form>
 
 
@@ -53,3 +61,4 @@
     </ui:composition>
 
 </html>
+

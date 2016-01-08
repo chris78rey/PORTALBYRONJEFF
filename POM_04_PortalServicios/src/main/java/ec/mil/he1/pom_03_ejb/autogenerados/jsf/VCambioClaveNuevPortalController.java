@@ -48,9 +48,11 @@ public class VCambioClaveNuevPortalController implements Serializable {
         return listasComunes.findVistaCambioClave(cedula);
     }
 
+    private boolean dibujagrowl = false;
+
     public void buttonAction(ActionEvent actionEvent) {
-        String a;
-        String b;
+
+        dibujagrowl = true;
         if (!claveActual.equalsIgnoreCase(selected.getUsuClave())) {
             addMessage("´La clave actual no coincide");
         } else if (!selected.getClaveNueva().equalsIgnoreCase(selected.getClaveNueva2())) {
@@ -70,8 +72,9 @@ public class VCambioClaveNuevPortalController implements Serializable {
     }
 
     public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Warning!", summary));
+
     }
 
     @EJB
@@ -215,6 +218,20 @@ public class VCambioClaveNuevPortalController implements Serializable {
      */
     public void setClaveActual(String claveActual) {
         this.claveActual = claveActual;
+    }
+
+    /**
+     * @return the dibujagrowl
+     */
+    public boolean isDibujagrowl() {
+        return dibujagrowl;
+    }
+
+    /**
+     * @param dibujagrowl the dibujagrowl to set
+     */
+    public void setDibujagrowl(boolean dibujagrowl) {
+        this.dibujagrowl = dibujagrowl;
     }
 
     @FacesConverter(forClass = VCambioClaveNuevPortal.class)
