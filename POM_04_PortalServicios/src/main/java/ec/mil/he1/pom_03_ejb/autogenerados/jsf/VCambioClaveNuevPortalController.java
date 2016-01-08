@@ -37,6 +37,8 @@ public class VCambioClaveNuevPortalController implements Serializable {
     private static final long serialVersionUID = 1550668158162077840L;
     private static final Logger LOG = Logger.getLogger(VCambioClaveNuevPortalController.class.getName());
 
+    String estadoMoficicado = "0";
+
     @EJB
     private ListasComunes listasComunes;
     private List<VCambioClaveNuevPortal> list = new ArrayList<>();
@@ -58,6 +60,7 @@ public class VCambioClaveNuevPortalController implements Serializable {
         } else {
             try {
                 update();
+                estadoMoficicado = "1";
             } catch (Exception e) {
 
                 System.out.println("e = " + e.getLocalizedMessage());
@@ -124,10 +127,13 @@ public class VCambioClaveNuevPortalController implements Serializable {
     }
 
     public String regresaMenuPortal() throws IOException {
+        //solo se va al login cuando se ha modificado correctamente la clave
+        if (estadoMoficicado.equalsIgnoreCase("1")) {
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.invalidateSession();
+            ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
+        }
 
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.invalidateSession();
-        ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
         return null;
     }
 

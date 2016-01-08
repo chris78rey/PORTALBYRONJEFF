@@ -9,7 +9,7 @@
 
         <p:dialog id="VCambioClaveNuevPortalEditDlg" widgetVar="VCambioClaveNuevPortalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle0000001.EditVCambioClaveNuevPortalTitle}">
             <h:form id="VCambioClaveNuevPortalEditForm">
-                <p:growl id="growl" for="ajax"/>
+                <p:growl id="growl" />
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" >
 
@@ -29,7 +29,7 @@
 
                     <p:commandButton value="Cambiar Clave" 
                                      id="ajax" 
-                                     update="@all" 
+                                     update="@form,growl" 
                                      action="#{vCambioClaveNuevPortalController.regresaMenuPortal()}"
                                      actionListener="#{vCambioClaveNuevPortalController.buttonAction}" 
                                      styleClass="ui-priority-primary" />
