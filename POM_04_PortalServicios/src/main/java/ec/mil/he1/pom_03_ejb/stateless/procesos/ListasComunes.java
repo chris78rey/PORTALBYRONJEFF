@@ -11,9 +11,10 @@ import ec.mil.he1.pom_01_domain.Parroquias;
 import ec.mil.he1.pom_01_domain.Parroquias_;
 import ec.mil.he1.pom_01_domain.Provincias;
 import ec.mil.he1.pom_01_domain.Provincias_;
-import ec.mil.he1.pom_01_domain.SegPerfil_;
 import ec.mil.he1.pom_01_domain.VCambioClaveNuevPortal;
 import ec.mil.he1.pom_01_domain.VCambioClaveNuevPortal_;
+import ec.mil.he1.pom_01_domain.VClaveReset;
+import ec.mil.he1.pom_01_domain.VClaveReset_;
 import ec.mil.he1.pom_01_domain.VDetallePaciente;
 import ec.mil.he1.pom_01_domain.VDetallePaciente_;
 import ec.mil.he1.pom_03_ejb.stateless.VTurnosReservados;
@@ -118,7 +119,7 @@ public class ListasComunes {
         Query query = em.createNativeQuery(sql);
 
         List<Object[]> results = query.getResultList();
-        List data = new ArrayList<HashMap>();
+        List data = new ArrayList<>();
 
         if (!results.isEmpty()) {
             for (Object[] result : results) {
@@ -431,6 +432,16 @@ public class ListasComunes {
         CriteriaQuery<VCambioClaveNuevPortal> cq = cb.createQuery(VCambioClaveNuevPortal.class);
         Root<VCambioClaveNuevPortal> root = cq.from(VCambioClaveNuevPortal.class);
         cq.where(cb.equal(root.get(VCambioClaveNuevPortal_.cedulaLogin), cedula));
+        List resultList = em.createQuery(cq).setHint("eclipselink.refresh", "true").getResultList();
+        return resultList;
+    }
+
+    //hacer una función que busque la existencia de su clave 
+    public List<VClaveReset> findByCCusuarioRegistrado(String CC) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<VClaveReset> cq = cb.createQuery(VClaveReset.class);
+        Root<VClaveReset> root = cq.from(VClaveReset.class);
+        cq.where(cb.equal(root.get(VClaveReset_.cedulaLogin), CC));
         List resultList = em.createQuery(cq).setHint("eclipselink.refresh", "true").getResultList();
         return resultList;
     }

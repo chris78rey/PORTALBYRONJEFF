@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
@@ -35,7 +33,7 @@
                             <div class="Container80 Fnone MarAuto FontBold"><i class="icon-lock"></i> Login</div>
                         </div>
                         <div class="Container50 TexAlCenter Animated05 BoxSizeBorder TabBtn right" role="2">
-                            <div class="Container80 Fnone MarAuto FontBold"><i class="icon-key-1"></i> Permissions</div>
+                            <div class="Container80 Fnone MarAuto FontBold"><i class="icon-key-1"></i> Reseteo de clave</div>
                         </div>
 
                         <div class="Container90 Fnone MarAuto TexAlCenter TabContent OvHidden" id="TAB1">
@@ -46,7 +44,7 @@
                             <!--<p:password value="#{loginController.password}" placeholder="Password" styleClass="Container80 Fnone MarAuto Fs18" feedback="false"/>-->
                             <div class="EmptyBox20"></div>
                             <div class="Container85 Fnone MarAuto softgray">
-                                
+
                             </div>
                             <div class="EmptyBox30"></div>
 
@@ -61,9 +59,16 @@
 
                         <div class="Container90 Fnone MarAuto DispNone TexAlCenter TabContent OvHidden" id="TAB2">
                             <div class="EmptyBox50"></div>
-                            <p:inputText value="#{loginController.email}" placeholder="Your Email Address" styleClass="Container80 Fnone MarAuto Fs18"/>
+                            <p:inputText value="#{loginController.username}" placeholder="Ingrese su cédula" styleClass="Container80 Fnone MarAuto Fs18"/>
                             <div class="EmptyBox20"></div>
-                            <p:button  value="Send Access Request" styleClass="Fs16"></p:button>
+
+
+                            <p:commandButton styleClass="Fs16" 
+                                             value="Enviar solicitud" 
+                                             id="withIcon" 
+                                             actionListener="#{loginController.buttonActionResetClave}" 
+                                             update="growl"  />
+
                             <div class="EmptyBox50"></div>
                         </div>
                     </div>
