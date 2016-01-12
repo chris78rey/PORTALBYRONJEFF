@@ -71,6 +71,7 @@ public class LoginController implements Serializable {
     }
     private String password = "Jesus";
     private String username = "0603362989";
+    private String usernamereset = "1712730132";
     private String email = "";
 
     public LoginSessionBean getLoginSessionBean() {
@@ -98,10 +99,10 @@ public class LoginController implements Serializable {
     public void buttonActionResetClave(ActionEvent actionEvent) {
 
         VClaveReset vcr = new VClaveReset();
-        vcr.setCedulaLogin(username);
+        vcr.setCedulaLogin(usernamereset);
         vClaveResetFacade.create(vcr);
 
-        List<VClaveReset> vcrlist = listasComunes.findByCCusuarioRegistrado(username);
+        List<VClaveReset> vcrlist = listasComunes.findByCCusuarioRegistrado(usernamereset);
         Iterator<VClaveReset> iterator = vcrlist.iterator();
 
         if (!vcrlist.isEmpty()) {
@@ -122,6 +123,7 @@ public class LoginController implements Serializable {
             mensaje = "Usted no esta registrado en el sistema";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Warning!", mensaje));
         }
+        usernamereset = "";
 
     }
 
@@ -210,5 +212,19 @@ public class LoginController implements Serializable {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.invalidateSession();
         ec.redirect(ec.getRequestContextPath() + "/");
+    }
+
+    /**
+     * @return the usernamereset
+     */
+    public String getUsernamereset() {
+        return usernamereset;
+    }
+
+    /**
+     * @param usernamereset the usernamereset to set
+     */
+    public void setUsernamereset(String usernamereset) {
+        this.usernamereset = usernamereset;
     }
 }

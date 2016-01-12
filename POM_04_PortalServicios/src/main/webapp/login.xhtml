@@ -59,15 +59,15 @@
 
                         <div class="Container90 Fnone MarAuto DispNone TexAlCenter TabContent OvHidden" id="TAB2">
                             <div class="EmptyBox50"></div>
-                            <p:inputText value="#{loginController.username}" placeholder="Ingrese su cédula" styleClass="Container80 Fnone MarAuto Fs18"/>
+                            <p:inputText value="#{loginController.usernamereset}" id="reseteoclave" placeholder="Ingrese su cédula" styleClass="Container80 Fnone MarAuto Fs18"/>
                             <div class="EmptyBox20"></div>
 
 
                             <p:commandButton styleClass="Fs16" 
-                                             value="Enviar solicitud" 
+                                             value="Enviar solicitud"                                              
                                              id="withIcon" 
                                              actionListener="#{loginController.buttonActionResetClave}" 
-                                             update="growl"  />
+                                             update="growl,reseteoclave"  />
 
                             <div class="EmptyBox50"></div>
                         </div>
