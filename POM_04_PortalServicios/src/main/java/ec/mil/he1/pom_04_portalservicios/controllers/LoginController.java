@@ -18,6 +18,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -34,56 +35,56 @@ import javax.servlet.http.HttpSession;
 @Named(value = "loginController")
 @SessionScoped
 public class LoginController implements Serializable {
-    
+
     @EJB
     private ListasComunes listasComunes;
     @EJB
     private VClaveResetFacade vClaveResetFacade;
-    
+
     String paginaSiguiente = "";
     @EJB
     private transient VUsuariosClasifFacade vUsuariosClasifFacade;
     private VUsuariosClasif vUsuariosClasif = new VUsuariosClasif();
-    
+
     private static final long serialVersionUID = -9036861759497150346L;
     private SegUsuario segUsuario = new SegUsuario();
-    
+
     String mensaje = "";
-    
+
     @EJB
     private transient LoginSessionBean loginSessionBean;
-    
+
     public String getPassword() {
         return password;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getUsername() {
         return username;
     }
-    
+
     public void setUsername(String username) {
         this.username = username;
     }
     private String password = "Jesus";
     private String username = "0603362989";
     private String email = "";
-    
+
     public LoginSessionBean getLoginSessionBean() {
         return loginSessionBean;
     }
-    
+
     public void setLoginSessionBean(LoginSessionBean loginSessionBean) {
         this.loginSessionBean = loginSessionBean;
     }
-    
+
     public String getEmail() {
         return email;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -93,40 +94,40 @@ public class LoginController implements Serializable {
      */
     public LoginController() {
     }
-    
+
     public void buttonActionResetClave(ActionEvent actionEvent) {
-        
-        List<VClaveReset> findByCCusuarioRegistrado = listasComunes.findByCCusuarioRegistrado(username);
+
         VClaveReset vcr = new VClaveReset();
-        if (!findByCCusuarioRegistrado.isEmpty()) {
-            
-            for (VClaveReset findByCCusuarioRegistrado1 : findByCCusuarioRegistrado) {
-                vcr = findByCCusuarioRegistrado1;
+        vcr.setCedulaLogin(username);
+        vClaveResetFacade.create(vcr);
+
+        List<VClaveReset> vcrlist = listasComunes.findByCCusuarioRegistrado(username);
+        Iterator<VClaveReset> iterator = vcrlist.iterator();
+
+        if (!vcrlist.isEmpty()) {
+            while (iterator.hasNext()) {
+                vcr = iterator.next();
             }
+
             if (null != vcr.getEmail()) {
-              
-                vcr = vClaveResetFacade.find(vcr.getId());
-                vcr.setEmail(vcr.getEmail()+" ");
-                
-                vClaveResetFacade.edit(vcr);
+
                 mensaje = "Se ha enviado a su correo la clave temporal";
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Warning!", mensaje));
             } else {
                 mensaje = "Usted no tiene email registrado en el sistema";
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Warning!", mensaje));
             }
-            
+
         } else {
             mensaje = "Usted no esta registrado en el sistema";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Warning!", mensaje));
-            
         }
-        
+
     }
-    
+
     public void buttonActionPersonal(ActionEvent actionEvent) throws SQLException {
         String Login = loginSessionBean.Login(username, password, "2");
-        
+
         switch (Login) {
             case "1":
                 mensaje = "Su usuario y clave estan correctas";
@@ -163,11 +164,11 @@ public class LoginController implements Serializable {
                 break;
             default:
                 mensaje = "";
-            
+
         }
-        
+
     }
-    
+
     public String accionIngresoPersonal() throws IOException, NamingException, SQLException {
         //despliego el mensaje
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Warning!", mensaje));
@@ -204,7 +205,7 @@ public class LoginController implements Serializable {
     public void setvUsuariosClasif(VUsuariosClasif vUsuariosClasif) {
         this.vUsuariosClasif = vUsuariosClasif;
     }
-    
+
     public void logout() throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.invalidateSession();
