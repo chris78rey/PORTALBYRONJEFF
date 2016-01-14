@@ -69,9 +69,13 @@ public class LoginController implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
-    private String password = "Jesus";
-    private String username = "0603362989";
-    private String usernamereset = "1712730132";
+//    private String password = "Jesus";
+//    private String username = "0603362989";
+//    private String usernamereset = "1712730132";
+//    private String email = "";
+    private String password = "";
+    private String username = "";
+    private String usernamereset = "";
     private String email = "";
 
     public LoginSessionBean getLoginSessionBean() {

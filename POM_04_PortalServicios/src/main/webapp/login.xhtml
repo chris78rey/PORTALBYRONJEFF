@@ -4,7 +4,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title>SENTINEL BLUE | Prime Faces Layouts Header</title>
+        <title>HOSPITAL DE ESPECIALIDADES DE LAS FF.AA. N°1</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
 
         <h:outputScript name="js/login.js" library="sentinel-layout" />
@@ -20,8 +20,15 @@
                 <p:growl id="growl" showDetail="true" sticky="true" /> 
                 <div class="Container80 MaxWid500 Fnone MarAuto TexAlCenter PaddingTopPercent10">
                     <a href="" id="login-logo">
-                        <h:graphicImage name="images/LOGO.svg" styleClass="Fleft" library="sentinel-layout"/>
-                        <span class="Fs30 FontTitilliumSemiBoldItalic Fleft"><span class="softblue">SENTINEL</span><span class="hardblue">LAYOUT</span></span>
+                        <h:graphicImage  name="images/LOGO_1.svg" styleClass="Fleft" library="sentinel-layout"/>
+                        <span class="Fs30 FontTitilliumSemiBoldItalic Fleft">
+                            <span class="softblue">
+                               
+                            </span>
+                            <span class="hardblue">
+                                HOSPITAL DE ESPECIALIDADES DE LAS FF.AA. N°.1
+                            </span>                                
+                        </span>
                     </a>
                     <div class="EmptyBox10"></div>
                 </div>
@@ -40,7 +47,7 @@
                             <div class="EmptyBox50"></div>
                             <p:inputText value="#{loginController.username}"  placeholder="Username" styleClass="Container80 Fnone MarAuto Fs18"/>
                             <div class="EmptyBox10"></div>
-                            <p:inputText value="#{loginController.password}"  placeholder="Password" styleClass="Container80 Fnone MarAuto Fs18"/>
+                            <p:password value="#{loginController.password}"  placeholder="Password" styleClass="Container80 Fnone MarAuto Fs18"/>
                             <!--<p:password value="#{loginController.password}" placeholder="Password" styleClass="Container80 Fnone MarAuto Fs18" feedback="false"/>-->
                             <div class="EmptyBox20"></div>
                             <div class="Container85 Fnone MarAuto softgray">
